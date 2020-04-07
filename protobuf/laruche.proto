@@ -1,0 +1,135 @@
+syntax = "proto3";
+package core;
+
+option go_package = "github.com/benka-me/hive-server-core/go-pkg/core";
+import "github.com/benka-me/cell-user/protobuf/user.proto";
+
+enum DevLang {
+    go_ = 0;
+    javascript_ = 1;
+    python_ = 2;
+    java_ = 3;
+    cpp_ = 4;
+    csharp_ = 5;
+    objectivec_ = 6;
+    ruby_ = 7;
+    dart_ = 8;
+    php_ = 9;
+}
+
+message Bee {
+    string Name = 1;
+    string PkgName = 2;
+    string PkgNameCamel = 3;
+    string Repo = 4;
+    string Author = 5;
+    int32 Port = 7;
+    bool Public = 8;
+    string License = 9;
+    string Description = 10;
+    string Keywords = 11;
+    string Tag = 12;
+    DevLang DevLang = 13;
+    Languages Languages = 14;
+    ProtoSetup ProtoSetup = 15;
+    bool IsGateway = 16;
+    repeated string Deps = 17;
+    repeated string Cons = 18;
+}
+
+message Bees {
+    repeated Bee Bees = 1;
+    string StatusMessage = 2;
+}
+
+message BeeReq {
+    user.Token Token = 1;
+    string BeeName = 2;
+}
+
+message BeesReq {
+    user.Token Token = 1;
+    repeated string BeeNames = 2;
+}
+
+message Dep {
+    int32 Port = 1;
+    string Dev = 2;
+    string Prod = 3;
+    string PkgName = 4;
+    string PkgNameCamel = 5;
+}
+
+message Hive {
+    string Name = 1;
+    string PkgName = 2;
+    string PkgNameCamel = 3;
+    string Repo = 4;
+    string Author = 5;
+    bool Public = 8;
+    map<string, Dep> Deps = 9;
+}
+
+message Languages {
+    Go Go = 1;
+    Javascript Javascript = 2;
+
+}
+
+message ProtoSetup {
+    repeated string Files = 3;
+}
+
+message LanguageSetup {
+    bool Active = 1;
+    string ProtocBinary = 3;
+}
+
+message Go {
+    LanguageSetup Setup = 1;
+}
+message Javascript {
+    LanguageSetup Setup = 1;
+}
+message Python {
+    LanguageSetup Setup = 1;
+}
+message Java {
+    LanguageSetup Setup = 1;
+}
+message CPP {
+    LanguageSetup Setup = 1;
+}
+message CSharp {
+    LanguageSetup Setup = 1;
+}
+message ObjectiveC {
+    LanguageSetup Setup = 1;
+}
+message Ruby {
+    LanguageSetup Setup = 1;
+}
+message Dart {
+    LanguageSetup Setup = 1;
+}
+message PHP {
+    LanguageSetup Setup = 1;
+}
+
+message PushBee {
+    Bee Bee = 1;
+    user.Token Token = 2;
+}
+
+message PushHive {
+    Hive Hive = 1;
+    user.Token Token = 2;
+}
+
+message PushBeeRes {
+    string Id = 1;
+}
+
+message PushHiveRes {
+    string Id = 1;
+}
