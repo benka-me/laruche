@@ -1,0 +1,12 @@
+package rpc
+
+import (
+	"context"
+	"fmt"
+	"{{.Repo}}/go-pkg/{{.PkgName}}"
+)
+
+func (c *App) HelloWorld(ctx context.Context, req *{{.PkgName}}.Request) (*{{.PkgName}}.Greeting, error) {
+
+	return &{{.PkgName}}.Greeting{Msg: fmt.Sprintf("Hello %s", req.Msg)}, nil
+}

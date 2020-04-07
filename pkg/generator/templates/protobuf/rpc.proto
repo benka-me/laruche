@@ -1,0 +1,9 @@
+syntax = "proto3";
+package {{.PkgName}};
+
+option go_package = "{{.Repo}}/go-pkg/{{.PkgName}}";
+import "{{.PkgName}}.proto";
+
+service {{.PkgNameCamel}} {
+    rpc HelloWorld ({{.PkgName}}.Request) returns ({{.PkgName}}.Greeting);
+}

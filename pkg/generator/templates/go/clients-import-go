@@ -1,0 +1,1 @@
+{{.PkgName}} "{{.Repo}}/go-pkg/{{.PkgName}}"

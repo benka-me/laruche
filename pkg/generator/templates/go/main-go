@@ -1,0 +1,40 @@
+package main
+
+import (
+	"github.com/benka-me/hive/go-pkg/engine"
+	"github.com/urfave/cli"
+	"{{.Repo}}/go-pkg/http/rpc"
+	"log"
+	"os"
+)
+
+func main() {
+	app := cli.NewApp()
+	app.Commands = cli.Commands{
+		{
+			Name: "dev",
+			Action: func(context *cli.Context) error {
+				if len(os.Args) < 3 {
+					log.Fatal("usage: exec dev author/service-name")
+				}
+				rcf := engine.Parse(os.Args[2], true)
+				rpc.Server_2_0(*rcf)
+				return nil
+			},
+		},
+	}
+
+	app.Action = func(c *cli.Context) error {
+		if len(os.Args) < 2 {
+			log.Fatal("usage: exec author/service-name")
+		}
+		rcf := engine.Parse(os.Args[1], false)
+		rpc.Server_2_0(*rcf)
+		return nil
+	}
+
+	err := app.Run(os.Args)
+	if err != nil {
+		log.Fatal(err)
+	}
+}

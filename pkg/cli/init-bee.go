@@ -1,16 +1,16 @@
 package cli
 
 import (
-	"fmt"
-	"github.com/benka-me/hive-server-core/go-pkg/core"
+	"github.com/benka-me/laruche/pkg/generator"
+	"github.com/benka-me/laruche/pkg/laruche"
 	"github.com/urfave/cli"
 )
 
 func initBee(app App) cli.ActionFunc {
 	return func(context *cli.Context) error {
-		bee := core.Bee{}
+		bee := laruche.InitBeeAskUser()
 
-		fmt.Println(bee)
+		generator.GenerateAll(bee)
 		return nil
 	}
 }

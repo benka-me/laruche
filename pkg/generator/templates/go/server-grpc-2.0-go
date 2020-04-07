@@ -1,0 +1,45 @@
+package rpc
+
+//this is your entry point server, it will not be generated again.
+import (
+	"fmt"
+	{{.PkgName}} "{{.Repo}}/go-pkg/{{.PkgName}}"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
+	"github.com/benka-me/hive/go-pkg/engine"
+	"log"
+	"net"
+)
+
+// This structure will be passed to your handlers. Add everything you need inside.
+type App struct {
+    Clients
+}
+
+// your server port, don't change it unless you update the service on the hub.
+
+var grpcServer *grpc.Server
+
+func Server_2_0(rcf engine.RunConfig) {
+    var port = rcf.ThisPort("{{.Author}}/{{.Name}}")
+	var err error
+	app := &App{
+	    Clients : initClients(rcf, grpc.WithInsecure()), // Init clients of dependencies services
+	}
+
+	grpcServer = grpc.NewServer()
+	lis, err := net.Listen("tcp", port)
+
+	if err != nil {
+		log.Fatalf("failed to listen: %v", err)
+	}
+	{
+		{{.PkgName}}.Register{{.PkgNameCamel}}Server(grpcServer, app) // Register your service server.
+		reflection.Register(grpcServer)
+	}
+
+	fmt.Println("{{.Author}}/{{.Name}} service running on port", port)
+	if err := grpcServer.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
+	}
+}
