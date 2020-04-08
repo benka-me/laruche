@@ -92,153 +92,153 @@ type Bee struct {
 	Cons         []string    `protobuf:"bytes,18,rep,name=Cons,proto3" json:"Cons,omitempty"`
 }
 
-func (m *Bee) Reset()      { *m = Bee{} }
+func (bee *Bee) Reset()    { *bee = Bee{} }
 func (*Bee) ProtoMessage() {}
 func (*Bee) Descriptor() ([]byte, []int) {
 	return fileDescriptor_f7e43720d1edc0fe, []int{0}
 }
-func (m *Bee) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
+func (bee *Bee) XXX_Unmarshal(b []byte) error {
+	return bee.Unmarshal(b)
 }
-func (m *Bee) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (bee *Bee) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_Bee.Marshal(b, m, deterministic)
+		return xxx_messageInfo_Bee.Marshal(b, bee, deterministic)
 	} else {
 		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
+		n, err := bee.MarshalToSizedBuffer(b)
 		if err != nil {
 			return nil, err
 		}
 		return b[:n], nil
 	}
 }
-func (m *Bee) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Bee.Merge(m, src)
+func (bee *Bee) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Bee.Merge(bee, src)
 }
-func (m *Bee) XXX_Size() int {
-	return m.Size()
+func (bee *Bee) XXX_Size() int {
+	return bee.Size()
 }
-func (m *Bee) XXX_DiscardUnknown() {
-	xxx_messageInfo_Bee.DiscardUnknown(m)
+func (bee *Bee) XXX_DiscardUnknown() {
+	xxx_messageInfo_Bee.DiscardUnknown(bee)
 }
 
 var xxx_messageInfo_Bee proto.InternalMessageInfo
 
-func (m *Bee) GetName() string {
-	if m != nil {
-		return m.Name
+func (bee *Bee) GetName() string {
+	if bee != nil {
+		return bee.Name
 	}
 	return ""
 }
 
-func (m *Bee) GetPkgName() string {
-	if m != nil {
-		return m.PkgName
+func (bee *Bee) GetPkgName() string {
+	if bee != nil {
+		return bee.PkgName
 	}
 	return ""
 }
 
-func (m *Bee) GetPkgNameCamel() string {
-	if m != nil {
-		return m.PkgNameCamel
+func (bee *Bee) GetPkgNameCamel() string {
+	if bee != nil {
+		return bee.PkgNameCamel
 	}
 	return ""
 }
 
-func (m *Bee) GetRepo() string {
-	if m != nil {
-		return m.Repo
+func (bee *Bee) GetRepo() string {
+	if bee != nil {
+		return bee.Repo
 	}
 	return ""
 }
 
-func (m *Bee) GetAuthor() string {
-	if m != nil {
-		return m.Author
+func (bee *Bee) GetAuthor() string {
+	if bee != nil {
+		return bee.Author
 	}
 	return ""
 }
 
-func (m *Bee) GetPort() int32 {
-	if m != nil {
-		return m.Port
+func (bee *Bee) GetPort() int32 {
+	if bee != nil {
+		return bee.Port
 	}
 	return 0
 }
 
-func (m *Bee) GetPublic() bool {
-	if m != nil {
-		return m.Public
+func (bee *Bee) GetPublic() bool {
+	if bee != nil {
+		return bee.Public
 	}
 	return false
 }
 
-func (m *Bee) GetLicense() string {
-	if m != nil {
-		return m.License
+func (bee *Bee) GetLicense() string {
+	if bee != nil {
+		return bee.License
 	}
 	return ""
 }
 
-func (m *Bee) GetDescription() string {
-	if m != nil {
-		return m.Description
+func (bee *Bee) GetDescription() string {
+	if bee != nil {
+		return bee.Description
 	}
 	return ""
 }
 
-func (m *Bee) GetKeywords() string {
-	if m != nil {
-		return m.Keywords
+func (bee *Bee) GetKeywords() string {
+	if bee != nil {
+		return bee.Keywords
 	}
 	return ""
 }
 
-func (m *Bee) GetTag() string {
-	if m != nil {
-		return m.Tag
+func (bee *Bee) GetTag() string {
+	if bee != nil {
+		return bee.Tag
 	}
 	return ""
 }
 
-func (m *Bee) GetDevLang() DevLang {
-	if m != nil {
-		return m.DevLang
+func (bee *Bee) GetDevLang() DevLang {
+	if bee != nil {
+		return bee.DevLang
 	}
 	return go_
 }
 
-func (m *Bee) GetLanguages() *Languages {
-	if m != nil {
-		return m.Languages
+func (bee *Bee) GetLanguages() *Languages {
+	if bee != nil {
+		return bee.Languages
 	}
 	return nil
 }
 
-func (m *Bee) GetProtoSetup() *ProtoSetup {
-	if m != nil {
-		return m.ProtoSetup
+func (bee *Bee) GetProtoSetup() *ProtoSetup {
+	if bee != nil {
+		return bee.ProtoSetup
 	}
 	return nil
 }
 
-func (m *Bee) GetIsGateway() bool {
-	if m != nil {
-		return m.IsGateway
+func (bee *Bee) GetIsGateway() bool {
+	if bee != nil {
+		return bee.IsGateway
 	}
 	return false
 }
 
-func (m *Bee) GetDeps() []string {
-	if m != nil {
-		return m.Deps
+func (bee *Bee) GetDeps() []string {
+	if bee != nil {
+		return bee.Deps
 	}
 	return nil
 }
 
-func (m *Bee) GetCons() []string {
-	if m != nil {
-		return m.Cons
+func (bee *Bee) GetCons() []string {
+	if bee != nil {
+		return bee.Cons
 	}
 	return nil
 }
@@ -481,83 +481,83 @@ type Hive struct {
 	Deps         map[string]*Dep `protobuf:"bytes,9,rep,name=Deps,proto3" json:"Deps,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
-func (m *Hive) Reset()      { *m = Hive{} }
+func (hive *Hive) Reset()   { *hive = Hive{} }
 func (*Hive) ProtoMessage() {}
 func (*Hive) Descriptor() ([]byte, []int) {
 	return fileDescriptor_f7e43720d1edc0fe, []int{5}
 }
-func (m *Hive) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
+func (hive *Hive) XXX_Unmarshal(b []byte) error {
+	return hive.Unmarshal(b)
 }
-func (m *Hive) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (hive *Hive) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_Hive.Marshal(b, m, deterministic)
+		return xxx_messageInfo_Hive.Marshal(b, hive, deterministic)
 	} else {
 		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
+		n, err := hive.MarshalToSizedBuffer(b)
 		if err != nil {
 			return nil, err
 		}
 		return b[:n], nil
 	}
 }
-func (m *Hive) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Hive.Merge(m, src)
+func (hive *Hive) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Hive.Merge(hive, src)
 }
-func (m *Hive) XXX_Size() int {
-	return m.Size()
+func (hive *Hive) XXX_Size() int {
+	return hive.Size()
 }
-func (m *Hive) XXX_DiscardUnknown() {
-	xxx_messageInfo_Hive.DiscardUnknown(m)
+func (hive *Hive) XXX_DiscardUnknown() {
+	xxx_messageInfo_Hive.DiscardUnknown(hive)
 }
 
 var xxx_messageInfo_Hive proto.InternalMessageInfo
 
-func (m *Hive) GetName() string {
-	if m != nil {
-		return m.Name
+func (hive *Hive) GetName() string {
+	if hive != nil {
+		return hive.Name
 	}
 	return ""
 }
 
-func (m *Hive) GetPkgName() string {
-	if m != nil {
-		return m.PkgName
+func (hive *Hive) GetPkgName() string {
+	if hive != nil {
+		return hive.PkgName
 	}
 	return ""
 }
 
-func (m *Hive) GetPkgNameCamel() string {
-	if m != nil {
-		return m.PkgNameCamel
+func (hive *Hive) GetPkgNameCamel() string {
+	if hive != nil {
+		return hive.PkgNameCamel
 	}
 	return ""
 }
 
-func (m *Hive) GetRepo() string {
-	if m != nil {
-		return m.Repo
+func (hive *Hive) GetRepo() string {
+	if hive != nil {
+		return hive.Repo
 	}
 	return ""
 }
 
-func (m *Hive) GetAuthor() string {
-	if m != nil {
-		return m.Author
+func (hive *Hive) GetAuthor() string {
+	if hive != nil {
+		return hive.Author
 	}
 	return ""
 }
 
-func (m *Hive) GetPublic() bool {
-	if m != nil {
-		return m.Public
+func (hive *Hive) GetPublic() bool {
+	if hive != nil {
+		return hive.Public
 	}
 	return false
 }
 
-func (m *Hive) GetDeps() map[string]*Dep {
-	if m != nil {
-		return m.Deps
+func (hive *Hive) GetDeps() map[string]*Dep {
+	if hive != nil {
+		return hive.Deps
 	}
 	return nil
 }
@@ -1427,9 +1427,9 @@ func (x DevLang) String() string {
 	}
 	return strconv.Itoa(int(x))
 }
-func (this *Bee) Equal(that interface{}) bool {
+func (bee *Bee) Equal(that interface{}) bool {
 	if that == nil {
-		return this == nil
+		return bee == nil
 	}
 
 	that1, ok := that.(*Bee)
@@ -1442,68 +1442,68 @@ func (this *Bee) Equal(that interface{}) bool {
 		}
 	}
 	if that1 == nil {
-		return this == nil
-	} else if this == nil {
+		return bee == nil
+	} else if bee == nil {
 		return false
 	}
-	if this.Name != that1.Name {
+	if bee.Name != that1.Name {
 		return false
 	}
-	if this.PkgName != that1.PkgName {
+	if bee.PkgName != that1.PkgName {
 		return false
 	}
-	if this.PkgNameCamel != that1.PkgNameCamel {
+	if bee.PkgNameCamel != that1.PkgNameCamel {
 		return false
 	}
-	if this.Repo != that1.Repo {
+	if bee.Repo != that1.Repo {
 		return false
 	}
-	if this.Author != that1.Author {
+	if bee.Author != that1.Author {
 		return false
 	}
-	if this.Port != that1.Port {
+	if bee.Port != that1.Port {
 		return false
 	}
-	if this.Public != that1.Public {
+	if bee.Public != that1.Public {
 		return false
 	}
-	if this.License != that1.License {
+	if bee.License != that1.License {
 		return false
 	}
-	if this.Description != that1.Description {
+	if bee.Description != that1.Description {
 		return false
 	}
-	if this.Keywords != that1.Keywords {
+	if bee.Keywords != that1.Keywords {
 		return false
 	}
-	if this.Tag != that1.Tag {
+	if bee.Tag != that1.Tag {
 		return false
 	}
-	if this.DevLang != that1.DevLang {
+	if bee.DevLang != that1.DevLang {
 		return false
 	}
-	if !this.Languages.Equal(that1.Languages) {
+	if !bee.Languages.Equal(that1.Languages) {
 		return false
 	}
-	if !this.ProtoSetup.Equal(that1.ProtoSetup) {
+	if !bee.ProtoSetup.Equal(that1.ProtoSetup) {
 		return false
 	}
-	if this.IsGateway != that1.IsGateway {
+	if bee.IsGateway != that1.IsGateway {
 		return false
 	}
-	if len(this.Deps) != len(that1.Deps) {
+	if len(bee.Deps) != len(that1.Deps) {
 		return false
 	}
-	for i := range this.Deps {
-		if this.Deps[i] != that1.Deps[i] {
+	for i := range bee.Deps {
+		if bee.Deps[i] != that1.Deps[i] {
 			return false
 		}
 	}
-	if len(this.Cons) != len(that1.Cons) {
+	if len(bee.Cons) != len(that1.Cons) {
 		return false
 	}
-	for i := range this.Cons {
-		if this.Cons[i] != that1.Cons[i] {
+	for i := range bee.Cons {
+		if bee.Cons[i] != that1.Cons[i] {
 			return false
 		}
 	}
@@ -1636,9 +1636,9 @@ func (this *Dep) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *Hive) Equal(that interface{}) bool {
+func (hive *Hive) Equal(that interface{}) bool {
 	if that == nil {
-		return this == nil
+		return hive == nil
 	}
 
 	that1, ok := that.(*Hive)
@@ -1651,33 +1651,33 @@ func (this *Hive) Equal(that interface{}) bool {
 		}
 	}
 	if that1 == nil {
-		return this == nil
-	} else if this == nil {
+		return hive == nil
+	} else if hive == nil {
 		return false
 	}
-	if this.Name != that1.Name {
+	if hive.Name != that1.Name {
 		return false
 	}
-	if this.PkgName != that1.PkgName {
+	if hive.PkgName != that1.PkgName {
 		return false
 	}
-	if this.PkgNameCamel != that1.PkgNameCamel {
+	if hive.PkgNameCamel != that1.PkgNameCamel {
 		return false
 	}
-	if this.Repo != that1.Repo {
+	if hive.Repo != that1.Repo {
 		return false
 	}
-	if this.Author != that1.Author {
+	if hive.Author != that1.Author {
 		return false
 	}
-	if this.Public != that1.Public {
+	if hive.Public != that1.Public {
 		return false
 	}
-	if len(this.Deps) != len(that1.Deps) {
+	if len(hive.Deps) != len(that1.Deps) {
 		return false
 	}
-	for i := range this.Deps {
-		if !this.Deps[i].Equal(that1.Deps[i]) {
+	for i := range hive.Deps {
+		if !hive.Deps[i].Equal(that1.Deps[i]) {
 			return false
 		}
 	}
@@ -2108,33 +2108,33 @@ func (this *PushHiveRes) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *Bee) GoString() string {
-	if this == nil {
+func (bee *Bee) GoString() string {
+	if bee == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 21)
 	s = append(s, "&core.Bee{")
-	s = append(s, "Name: "+fmt.Sprintf("%#v", this.Name)+",\n")
-	s = append(s, "PkgName: "+fmt.Sprintf("%#v", this.PkgName)+",\n")
-	s = append(s, "PkgNameCamel: "+fmt.Sprintf("%#v", this.PkgNameCamel)+",\n")
-	s = append(s, "Repo: "+fmt.Sprintf("%#v", this.Repo)+",\n")
-	s = append(s, "Author: "+fmt.Sprintf("%#v", this.Author)+",\n")
-	s = append(s, "Port: "+fmt.Sprintf("%#v", this.Port)+",\n")
-	s = append(s, "Public: "+fmt.Sprintf("%#v", this.Public)+",\n")
-	s = append(s, "License: "+fmt.Sprintf("%#v", this.License)+",\n")
-	s = append(s, "Description: "+fmt.Sprintf("%#v", this.Description)+",\n")
-	s = append(s, "Keywords: "+fmt.Sprintf("%#v", this.Keywords)+",\n")
-	s = append(s, "Tag: "+fmt.Sprintf("%#v", this.Tag)+",\n")
-	s = append(s, "DevLang: "+fmt.Sprintf("%#v", this.DevLang)+",\n")
-	if this.Languages != nil {
-		s = append(s, "Languages: "+fmt.Sprintf("%#v", this.Languages)+",\n")
+	s = append(s, "Name: "+fmt.Sprintf("%#v", bee.Name)+",\n")
+	s = append(s, "PkgName: "+fmt.Sprintf("%#v", bee.PkgName)+",\n")
+	s = append(s, "PkgNameCamel: "+fmt.Sprintf("%#v", bee.PkgNameCamel)+",\n")
+	s = append(s, "Repo: "+fmt.Sprintf("%#v", bee.Repo)+",\n")
+	s = append(s, "Author: "+fmt.Sprintf("%#v", bee.Author)+",\n")
+	s = append(s, "Port: "+fmt.Sprintf("%#v", bee.Port)+",\n")
+	s = append(s, "Public: "+fmt.Sprintf("%#v", bee.Public)+",\n")
+	s = append(s, "License: "+fmt.Sprintf("%#v", bee.License)+",\n")
+	s = append(s, "Description: "+fmt.Sprintf("%#v", bee.Description)+",\n")
+	s = append(s, "Keywords: "+fmt.Sprintf("%#v", bee.Keywords)+",\n")
+	s = append(s, "Tag: "+fmt.Sprintf("%#v", bee.Tag)+",\n")
+	s = append(s, "DevLang: "+fmt.Sprintf("%#v", bee.DevLang)+",\n")
+	if bee.Languages != nil {
+		s = append(s, "Languages: "+fmt.Sprintf("%#v", bee.Languages)+",\n")
 	}
-	if this.ProtoSetup != nil {
-		s = append(s, "ProtoSetup: "+fmt.Sprintf("%#v", this.ProtoSetup)+",\n")
+	if bee.ProtoSetup != nil {
+		s = append(s, "ProtoSetup: "+fmt.Sprintf("%#v", bee.ProtoSetup)+",\n")
 	}
-	s = append(s, "IsGateway: "+fmt.Sprintf("%#v", this.IsGateway)+",\n")
-	s = append(s, "Deps: "+fmt.Sprintf("%#v", this.Deps)+",\n")
-	s = append(s, "Cons: "+fmt.Sprintf("%#v", this.Cons)+",\n")
+	s = append(s, "IsGateway: "+fmt.Sprintf("%#v", bee.IsGateway)+",\n")
+	s = append(s, "Deps: "+fmt.Sprintf("%#v", bee.Deps)+",\n")
+	s = append(s, "Cons: "+fmt.Sprintf("%#v", bee.Cons)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -2191,29 +2191,29 @@ func (this *Dep) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *Hive) GoString() string {
-	if this == nil {
+func (hive *Hive) GoString() string {
+	if hive == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 11)
 	s = append(s, "&core.Hive{")
-	s = append(s, "Name: "+fmt.Sprintf("%#v", this.Name)+",\n")
-	s = append(s, "PkgName: "+fmt.Sprintf("%#v", this.PkgName)+",\n")
-	s = append(s, "PkgNameCamel: "+fmt.Sprintf("%#v", this.PkgNameCamel)+",\n")
-	s = append(s, "Repo: "+fmt.Sprintf("%#v", this.Repo)+",\n")
-	s = append(s, "Author: "+fmt.Sprintf("%#v", this.Author)+",\n")
-	s = append(s, "Public: "+fmt.Sprintf("%#v", this.Public)+",\n")
-	keysForDeps := make([]string, 0, len(this.Deps))
-	for k, _ := range this.Deps {
+	s = append(s, "Name: "+fmt.Sprintf("%#v", hive.Name)+",\n")
+	s = append(s, "PkgName: "+fmt.Sprintf("%#v", hive.PkgName)+",\n")
+	s = append(s, "PkgNameCamel: "+fmt.Sprintf("%#v", hive.PkgNameCamel)+",\n")
+	s = append(s, "Repo: "+fmt.Sprintf("%#v", hive.Repo)+",\n")
+	s = append(s, "Author: "+fmt.Sprintf("%#v", hive.Author)+",\n")
+	s = append(s, "Public: "+fmt.Sprintf("%#v", hive.Public)+",\n")
+	keysForDeps := make([]string, 0, len(hive.Deps))
+	for k, _ := range hive.Deps {
 		keysForDeps = append(keysForDeps, k)
 	}
 	github_com_gogo_protobuf_sortkeys.Strings(keysForDeps)
 	mapStringForDeps := "map[string]*Dep{"
 	for _, k := range keysForDeps {
-		mapStringForDeps += fmt.Sprintf("%#v: %#v,", k, this.Deps[k])
+		mapStringForDeps += fmt.Sprintf("%#v: %#v,", k, hive.Deps[k])
 	}
 	mapStringForDeps += "}"
-	if this.Deps != nil {
+	if hive.Deps != nil {
 		s = append(s, "Deps: "+mapStringForDeps+",\n")
 	}
 	s = append(s, "}")
@@ -2433,51 +2433,51 @@ func valueToGoStringCore(v interface{}, typ string) string {
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("func(v %v) *%v { return &v } ( %#v )", typ, typ, pv)
 }
-func (m *Bee) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
+func (bee *Bee) Marshal() (dAtA []byte, err error) {
+	size := bee.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	n, err := bee.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
 	return dAtA[:n], nil
 }
 
-func (m *Bee) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
+func (bee *Bee) MarshalTo(dAtA []byte) (int, error) {
+	size := bee.Size()
+	return bee.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *Bee) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (bee *Bee) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Cons) > 0 {
-		for iNdEx := len(m.Cons) - 1; iNdEx >= 0; iNdEx-- {
-			i -= len(m.Cons[iNdEx])
-			copy(dAtA[i:], m.Cons[iNdEx])
-			i = encodeVarintCore(dAtA, i, uint64(len(m.Cons[iNdEx])))
+	if len(bee.Cons) > 0 {
+		for iNdEx := len(bee.Cons) - 1; iNdEx >= 0; iNdEx-- {
+			i -= len(bee.Cons[iNdEx])
+			copy(dAtA[i:], bee.Cons[iNdEx])
+			i = encodeVarintCore(dAtA, i, uint64(len(bee.Cons[iNdEx])))
 			i--
 			dAtA[i] = 0x1
 			i--
 			dAtA[i] = 0x92
 		}
 	}
-	if len(m.Deps) > 0 {
-		for iNdEx := len(m.Deps) - 1; iNdEx >= 0; iNdEx-- {
-			i -= len(m.Deps[iNdEx])
-			copy(dAtA[i:], m.Deps[iNdEx])
-			i = encodeVarintCore(dAtA, i, uint64(len(m.Deps[iNdEx])))
+	if len(bee.Deps) > 0 {
+		for iNdEx := len(bee.Deps) - 1; iNdEx >= 0; iNdEx-- {
+			i -= len(bee.Deps[iNdEx])
+			copy(dAtA[i:], bee.Deps[iNdEx])
+			i = encodeVarintCore(dAtA, i, uint64(len(bee.Deps[iNdEx])))
 			i--
 			dAtA[i] = 0x1
 			i--
 			dAtA[i] = 0x8a
 		}
 	}
-	if m.IsGateway {
+	if bee.IsGateway {
 		i--
-		if m.IsGateway {
+		if bee.IsGateway {
 			dAtA[i] = 1
 		} else {
 			dAtA[i] = 0
@@ -2487,9 +2487,9 @@ func (m *Bee) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x80
 	}
-	if m.ProtoSetup != nil {
+	if bee.ProtoSetup != nil {
 		{
-			size, err := m.ProtoSetup.MarshalToSizedBuffer(dAtA[:i])
+			size, err := bee.ProtoSetup.MarshalToSizedBuffer(dAtA[:i])
 			if err != nil {
 				return 0, err
 			}
@@ -2499,9 +2499,9 @@ func (m *Bee) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x7a
 	}
-	if m.Languages != nil {
+	if bee.Languages != nil {
 		{
-			size, err := m.Languages.MarshalToSizedBuffer(dAtA[:i])
+			size, err := bee.Languages.MarshalToSizedBuffer(dAtA[:i])
 			if err != nil {
 				return 0, err
 			}
@@ -2511,42 +2511,42 @@ func (m *Bee) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x72
 	}
-	if m.DevLang != 0 {
-		i = encodeVarintCore(dAtA, i, uint64(m.DevLang))
+	if bee.DevLang != 0 {
+		i = encodeVarintCore(dAtA, i, uint64(bee.DevLang))
 		i--
 		dAtA[i] = 0x68
 	}
-	if len(m.Tag) > 0 {
-		i -= len(m.Tag)
-		copy(dAtA[i:], m.Tag)
-		i = encodeVarintCore(dAtA, i, uint64(len(m.Tag)))
+	if len(bee.Tag) > 0 {
+		i -= len(bee.Tag)
+		copy(dAtA[i:], bee.Tag)
+		i = encodeVarintCore(dAtA, i, uint64(len(bee.Tag)))
 		i--
 		dAtA[i] = 0x62
 	}
-	if len(m.Keywords) > 0 {
-		i -= len(m.Keywords)
-		copy(dAtA[i:], m.Keywords)
-		i = encodeVarintCore(dAtA, i, uint64(len(m.Keywords)))
+	if len(bee.Keywords) > 0 {
+		i -= len(bee.Keywords)
+		copy(dAtA[i:], bee.Keywords)
+		i = encodeVarintCore(dAtA, i, uint64(len(bee.Keywords)))
 		i--
 		dAtA[i] = 0x5a
 	}
-	if len(m.Description) > 0 {
-		i -= len(m.Description)
-		copy(dAtA[i:], m.Description)
-		i = encodeVarintCore(dAtA, i, uint64(len(m.Description)))
+	if len(bee.Description) > 0 {
+		i -= len(bee.Description)
+		copy(dAtA[i:], bee.Description)
+		i = encodeVarintCore(dAtA, i, uint64(len(bee.Description)))
 		i--
 		dAtA[i] = 0x52
 	}
-	if len(m.License) > 0 {
-		i -= len(m.License)
-		copy(dAtA[i:], m.License)
-		i = encodeVarintCore(dAtA, i, uint64(len(m.License)))
+	if len(bee.License) > 0 {
+		i -= len(bee.License)
+		copy(dAtA[i:], bee.License)
+		i = encodeVarintCore(dAtA, i, uint64(len(bee.License)))
 		i--
 		dAtA[i] = 0x4a
 	}
-	if m.Public {
+	if bee.Public {
 		i--
-		if m.Public {
+		if bee.Public {
 			dAtA[i] = 1
 		} else {
 			dAtA[i] = 0
@@ -2554,43 +2554,43 @@ func (m *Bee) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x40
 	}
-	if m.Port != 0 {
-		i = encodeVarintCore(dAtA, i, uint64(m.Port))
+	if bee.Port != 0 {
+		i = encodeVarintCore(dAtA, i, uint64(bee.Port))
 		i--
 		dAtA[i] = 0x38
 	}
-	if len(m.Author) > 0 {
-		i -= len(m.Author)
-		copy(dAtA[i:], m.Author)
-		i = encodeVarintCore(dAtA, i, uint64(len(m.Author)))
+	if len(bee.Author) > 0 {
+		i -= len(bee.Author)
+		copy(dAtA[i:], bee.Author)
+		i = encodeVarintCore(dAtA, i, uint64(len(bee.Author)))
 		i--
 		dAtA[i] = 0x2a
 	}
-	if len(m.Repo) > 0 {
-		i -= len(m.Repo)
-		copy(dAtA[i:], m.Repo)
-		i = encodeVarintCore(dAtA, i, uint64(len(m.Repo)))
+	if len(bee.Repo) > 0 {
+		i -= len(bee.Repo)
+		copy(dAtA[i:], bee.Repo)
+		i = encodeVarintCore(dAtA, i, uint64(len(bee.Repo)))
 		i--
 		dAtA[i] = 0x22
 	}
-	if len(m.PkgNameCamel) > 0 {
-		i -= len(m.PkgNameCamel)
-		copy(dAtA[i:], m.PkgNameCamel)
-		i = encodeVarintCore(dAtA, i, uint64(len(m.PkgNameCamel)))
+	if len(bee.PkgNameCamel) > 0 {
+		i -= len(bee.PkgNameCamel)
+		copy(dAtA[i:], bee.PkgNameCamel)
+		i = encodeVarintCore(dAtA, i, uint64(len(bee.PkgNameCamel)))
 		i--
 		dAtA[i] = 0x1a
 	}
-	if len(m.PkgName) > 0 {
-		i -= len(m.PkgName)
-		copy(dAtA[i:], m.PkgName)
-		i = encodeVarintCore(dAtA, i, uint64(len(m.PkgName)))
+	if len(bee.PkgName) > 0 {
+		i -= len(bee.PkgName)
+		copy(dAtA[i:], bee.PkgName)
+		i = encodeVarintCore(dAtA, i, uint64(len(bee.PkgName)))
 		i--
 		dAtA[i] = 0x12
 	}
-	if len(m.Name) > 0 {
-		i -= len(m.Name)
-		copy(dAtA[i:], m.Name)
-		i = encodeVarintCore(dAtA, i, uint64(len(m.Name)))
+	if len(bee.Name) > 0 {
+		i -= len(bee.Name)
+		copy(dAtA[i:], bee.Name)
+		i = encodeVarintCore(dAtA, i, uint64(len(bee.Name)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -2783,29 +2783,29 @@ func (m *Dep) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *Hive) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
+func (hive *Hive) Marshal() (dAtA []byte, err error) {
+	size := hive.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	n, err := hive.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
 	return dAtA[:n], nil
 }
 
-func (m *Hive) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
+func (hive *Hive) MarshalTo(dAtA []byte) (int, error) {
+	size := hive.Size()
+	return hive.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *Hive) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (hive *Hive) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Deps) > 0 {
-		for k := range m.Deps {
-			v := m.Deps[k]
+	if len(hive.Deps) > 0 {
+		for k := range hive.Deps {
+			v := hive.Deps[k]
 			baseI := i
 			if v != nil {
 				{
@@ -2829,9 +2829,9 @@ func (m *Hive) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 			dAtA[i] = 0x4a
 		}
 	}
-	if m.Public {
+	if hive.Public {
 		i--
-		if m.Public {
+		if hive.Public {
 			dAtA[i] = 1
 		} else {
 			dAtA[i] = 0
@@ -2839,38 +2839,38 @@ func (m *Hive) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x40
 	}
-	if len(m.Author) > 0 {
-		i -= len(m.Author)
-		copy(dAtA[i:], m.Author)
-		i = encodeVarintCore(dAtA, i, uint64(len(m.Author)))
+	if len(hive.Author) > 0 {
+		i -= len(hive.Author)
+		copy(dAtA[i:], hive.Author)
+		i = encodeVarintCore(dAtA, i, uint64(len(hive.Author)))
 		i--
 		dAtA[i] = 0x2a
 	}
-	if len(m.Repo) > 0 {
-		i -= len(m.Repo)
-		copy(dAtA[i:], m.Repo)
-		i = encodeVarintCore(dAtA, i, uint64(len(m.Repo)))
+	if len(hive.Repo) > 0 {
+		i -= len(hive.Repo)
+		copy(dAtA[i:], hive.Repo)
+		i = encodeVarintCore(dAtA, i, uint64(len(hive.Repo)))
 		i--
 		dAtA[i] = 0x22
 	}
-	if len(m.PkgNameCamel) > 0 {
-		i -= len(m.PkgNameCamel)
-		copy(dAtA[i:], m.PkgNameCamel)
-		i = encodeVarintCore(dAtA, i, uint64(len(m.PkgNameCamel)))
+	if len(hive.PkgNameCamel) > 0 {
+		i -= len(hive.PkgNameCamel)
+		copy(dAtA[i:], hive.PkgNameCamel)
+		i = encodeVarintCore(dAtA, i, uint64(len(hive.PkgNameCamel)))
 		i--
 		dAtA[i] = 0x1a
 	}
-	if len(m.PkgName) > 0 {
-		i -= len(m.PkgName)
-		copy(dAtA[i:], m.PkgName)
-		i = encodeVarintCore(dAtA, i, uint64(len(m.PkgName)))
+	if len(hive.PkgName) > 0 {
+		i -= len(hive.PkgName)
+		copy(dAtA[i:], hive.PkgName)
+		i = encodeVarintCore(dAtA, i, uint64(len(hive.PkgName)))
 		i--
 		dAtA[i] = 0x12
 	}
-	if len(m.Name) > 0 {
-		i -= len(m.Name)
-		copy(dAtA[i:], m.Name)
-		i = encodeVarintCore(dAtA, i, uint64(len(m.Name)))
+	if len(hive.Name) > 0 {
+		i -= len(hive.Name)
+		copy(dAtA[i:], hive.Name)
+		i = encodeVarintCore(dAtA, i, uint64(len(hive.Name)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -3511,76 +3511,76 @@ func encodeVarintCore(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *Bee) Size() (n int) {
-	if m == nil {
+func (bee *Bee) Size() (n int) {
+	if bee == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = len(m.Name)
+	l = len(bee.Name)
 	if l > 0 {
 		n += 1 + l + sovCore(uint64(l))
 	}
-	l = len(m.PkgName)
+	l = len(bee.PkgName)
 	if l > 0 {
 		n += 1 + l + sovCore(uint64(l))
 	}
-	l = len(m.PkgNameCamel)
+	l = len(bee.PkgNameCamel)
 	if l > 0 {
 		n += 1 + l + sovCore(uint64(l))
 	}
-	l = len(m.Repo)
+	l = len(bee.Repo)
 	if l > 0 {
 		n += 1 + l + sovCore(uint64(l))
 	}
-	l = len(m.Author)
+	l = len(bee.Author)
 	if l > 0 {
 		n += 1 + l + sovCore(uint64(l))
 	}
-	if m.Port != 0 {
-		n += 1 + sovCore(uint64(m.Port))
+	if bee.Port != 0 {
+		n += 1 + sovCore(uint64(bee.Port))
 	}
-	if m.Public {
+	if bee.Public {
 		n += 2
 	}
-	l = len(m.License)
+	l = len(bee.License)
 	if l > 0 {
 		n += 1 + l + sovCore(uint64(l))
 	}
-	l = len(m.Description)
+	l = len(bee.Description)
 	if l > 0 {
 		n += 1 + l + sovCore(uint64(l))
 	}
-	l = len(m.Keywords)
+	l = len(bee.Keywords)
 	if l > 0 {
 		n += 1 + l + sovCore(uint64(l))
 	}
-	l = len(m.Tag)
+	l = len(bee.Tag)
 	if l > 0 {
 		n += 1 + l + sovCore(uint64(l))
 	}
-	if m.DevLang != 0 {
-		n += 1 + sovCore(uint64(m.DevLang))
+	if bee.DevLang != 0 {
+		n += 1 + sovCore(uint64(bee.DevLang))
 	}
-	if m.Languages != nil {
-		l = m.Languages.Size()
+	if bee.Languages != nil {
+		l = bee.Languages.Size()
 		n += 1 + l + sovCore(uint64(l))
 	}
-	if m.ProtoSetup != nil {
-		l = m.ProtoSetup.Size()
+	if bee.ProtoSetup != nil {
+		l = bee.ProtoSetup.Size()
 		n += 1 + l + sovCore(uint64(l))
 	}
-	if m.IsGateway {
+	if bee.IsGateway {
 		n += 3
 	}
-	if len(m.Deps) > 0 {
-		for _, s := range m.Deps {
+	if len(bee.Deps) > 0 {
+		for _, s := range bee.Deps {
 			l = len(s)
 			n += 2 + l + sovCore(uint64(l))
 		}
 	}
-	if len(m.Cons) > 0 {
-		for _, s := range m.Cons {
+	if len(bee.Cons) > 0 {
+		for _, s := range bee.Cons {
 			l = len(s)
 			n += 2 + l + sovCore(uint64(l))
 		}
@@ -3671,37 +3671,37 @@ func (m *Dep) Size() (n int) {
 	return n
 }
 
-func (m *Hive) Size() (n int) {
-	if m == nil {
+func (hive *Hive) Size() (n int) {
+	if hive == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = len(m.Name)
+	l = len(hive.Name)
 	if l > 0 {
 		n += 1 + l + sovCore(uint64(l))
 	}
-	l = len(m.PkgName)
+	l = len(hive.PkgName)
 	if l > 0 {
 		n += 1 + l + sovCore(uint64(l))
 	}
-	l = len(m.PkgNameCamel)
+	l = len(hive.PkgNameCamel)
 	if l > 0 {
 		n += 1 + l + sovCore(uint64(l))
 	}
-	l = len(m.Repo)
+	l = len(hive.Repo)
 	if l > 0 {
 		n += 1 + l + sovCore(uint64(l))
 	}
-	l = len(m.Author)
+	l = len(hive.Author)
 	if l > 0 {
 		n += 1 + l + sovCore(uint64(l))
 	}
-	if m.Public {
+	if hive.Public {
 		n += 2
 	}
-	if len(m.Deps) > 0 {
-		for k, v := range m.Deps {
+	if len(hive.Deps) > 0 {
+		for k, v := range hive.Deps {
 			_ = k
 			_ = v
 			l = 0
@@ -3960,28 +3960,28 @@ func sovCore(x uint64) (n int) {
 func sozCore(x uint64) (n int) {
 	return sovCore(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (this *Bee) String() string {
-	if this == nil {
+func (bee *Bee) String() string {
+	if bee == nil {
 		return "nil"
 	}
 	s := strings.Join([]string{`&Bee{`,
-		`Name:` + fmt.Sprintf("%v", this.Name) + `,`,
-		`PkgName:` + fmt.Sprintf("%v", this.PkgName) + `,`,
-		`PkgNameCamel:` + fmt.Sprintf("%v", this.PkgNameCamel) + `,`,
-		`Repo:` + fmt.Sprintf("%v", this.Repo) + `,`,
-		`Author:` + fmt.Sprintf("%v", this.Author) + `,`,
-		`Port:` + fmt.Sprintf("%v", this.Port) + `,`,
-		`Public:` + fmt.Sprintf("%v", this.Public) + `,`,
-		`License:` + fmt.Sprintf("%v", this.License) + `,`,
-		`Description:` + fmt.Sprintf("%v", this.Description) + `,`,
-		`Keywords:` + fmt.Sprintf("%v", this.Keywords) + `,`,
-		`Tag:` + fmt.Sprintf("%v", this.Tag) + `,`,
-		`DevLang:` + fmt.Sprintf("%v", this.DevLang) + `,`,
-		`Languages:` + strings.Replace(this.Languages.String(), "Languages", "Languages", 1) + `,`,
-		`ProtoSetup:` + strings.Replace(this.ProtoSetup.String(), "ProtoSetup", "ProtoSetup", 1) + `,`,
-		`IsGateway:` + fmt.Sprintf("%v", this.IsGateway) + `,`,
-		`Deps:` + fmt.Sprintf("%v", this.Deps) + `,`,
-		`Cons:` + fmt.Sprintf("%v", this.Cons) + `,`,
+		`Name:` + fmt.Sprintf("%v", bee.Name) + `,`,
+		`PkgName:` + fmt.Sprintf("%v", bee.PkgName) + `,`,
+		`PkgNameCamel:` + fmt.Sprintf("%v", bee.PkgNameCamel) + `,`,
+		`Repo:` + fmt.Sprintf("%v", bee.Repo) + `,`,
+		`Author:` + fmt.Sprintf("%v", bee.Author) + `,`,
+		`Port:` + fmt.Sprintf("%v", bee.Port) + `,`,
+		`Public:` + fmt.Sprintf("%v", bee.Public) + `,`,
+		`License:` + fmt.Sprintf("%v", bee.License) + `,`,
+		`Description:` + fmt.Sprintf("%v", bee.Description) + `,`,
+		`Keywords:` + fmt.Sprintf("%v", bee.Keywords) + `,`,
+		`Tag:` + fmt.Sprintf("%v", bee.Tag) + `,`,
+		`DevLang:` + fmt.Sprintf("%v", bee.DevLang) + `,`,
+		`Languages:` + strings.Replace(bee.Languages.String(), "Languages", "Languages", 1) + `,`,
+		`ProtoSetup:` + strings.Replace(bee.ProtoSetup.String(), "ProtoSetup", "ProtoSetup", 1) + `,`,
+		`IsGateway:` + fmt.Sprintf("%v", bee.IsGateway) + `,`,
+		`Deps:` + fmt.Sprintf("%v", bee.Deps) + `,`,
+		`Cons:` + fmt.Sprintf("%v", bee.Cons) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -4038,27 +4038,27 @@ func (this *Dep) String() string {
 	}, "")
 	return s
 }
-func (this *Hive) String() string {
-	if this == nil {
+func (hive *Hive) String() string {
+	if hive == nil {
 		return "nil"
 	}
-	keysForDeps := make([]string, 0, len(this.Deps))
-	for k, _ := range this.Deps {
+	keysForDeps := make([]string, 0, len(hive.Deps))
+	for k, _ := range hive.Deps {
 		keysForDeps = append(keysForDeps, k)
 	}
 	github_com_gogo_protobuf_sortkeys.Strings(keysForDeps)
 	mapStringForDeps := "map[string]*Dep{"
 	for _, k := range keysForDeps {
-		mapStringForDeps += fmt.Sprintf("%v: %v,", k, this.Deps[k])
+		mapStringForDeps += fmt.Sprintf("%v: %v,", k, hive.Deps[k])
 	}
 	mapStringForDeps += "}"
 	s := strings.Join([]string{`&Hive{`,
-		`Name:` + fmt.Sprintf("%v", this.Name) + `,`,
-		`PkgName:` + fmt.Sprintf("%v", this.PkgName) + `,`,
-		`PkgNameCamel:` + fmt.Sprintf("%v", this.PkgNameCamel) + `,`,
-		`Repo:` + fmt.Sprintf("%v", this.Repo) + `,`,
-		`Author:` + fmt.Sprintf("%v", this.Author) + `,`,
-		`Public:` + fmt.Sprintf("%v", this.Public) + `,`,
+		`Name:` + fmt.Sprintf("%v", hive.Name) + `,`,
+		`PkgName:` + fmt.Sprintf("%v", hive.PkgName) + `,`,
+		`PkgNameCamel:` + fmt.Sprintf("%v", hive.PkgNameCamel) + `,`,
+		`Repo:` + fmt.Sprintf("%v", hive.Repo) + `,`,
+		`Author:` + fmt.Sprintf("%v", hive.Author) + `,`,
+		`Public:` + fmt.Sprintf("%v", hive.Public) + `,`,
 		`Deps:` + mapStringForDeps + `,`,
 		`}`,
 	}, "")
@@ -4246,7 +4246,7 @@ func valueToStringCore(v interface{}) string {
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("*%v", pv)
 }
-func (m *Bee) Unmarshal(dAtA []byte) error {
+func (bee *Bee) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -4305,7 +4305,7 @@ func (m *Bee) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Name = string(dAtA[iNdEx:postIndex])
+			bee.Name = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
@@ -4337,7 +4337,7 @@ func (m *Bee) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.PkgName = string(dAtA[iNdEx:postIndex])
+			bee.PkgName = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 3:
 			if wireType != 2 {
@@ -4369,7 +4369,7 @@ func (m *Bee) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.PkgNameCamel = string(dAtA[iNdEx:postIndex])
+			bee.PkgNameCamel = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 4:
 			if wireType != 2 {
@@ -4401,7 +4401,7 @@ func (m *Bee) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Repo = string(dAtA[iNdEx:postIndex])
+			bee.Repo = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 5:
 			if wireType != 2 {
@@ -4433,13 +4433,13 @@ func (m *Bee) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Author = string(dAtA[iNdEx:postIndex])
+			bee.Author = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 7:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Port", wireType)
 			}
-			m.Port = 0
+			bee.Port = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowCore
@@ -4449,7 +4449,7 @@ func (m *Bee) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Port |= int32(b&0x7F) << shift
+				bee.Port |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -4473,7 +4473,7 @@ func (m *Bee) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-			m.Public = bool(v != 0)
+			bee.Public = bool(v != 0)
 		case 9:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field License", wireType)
@@ -4504,7 +4504,7 @@ func (m *Bee) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.License = string(dAtA[iNdEx:postIndex])
+			bee.License = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 10:
 			if wireType != 2 {
@@ -4536,7 +4536,7 @@ func (m *Bee) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Description = string(dAtA[iNdEx:postIndex])
+			bee.Description = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 11:
 			if wireType != 2 {
@@ -4568,7 +4568,7 @@ func (m *Bee) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Keywords = string(dAtA[iNdEx:postIndex])
+			bee.Keywords = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 12:
 			if wireType != 2 {
@@ -4600,13 +4600,13 @@ func (m *Bee) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Tag = string(dAtA[iNdEx:postIndex])
+			bee.Tag = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 13:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field DevLang", wireType)
 			}
-			m.DevLang = 0
+			bee.DevLang = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowCore
@@ -4616,7 +4616,7 @@ func (m *Bee) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.DevLang |= DevLang(b&0x7F) << shift
+				bee.DevLang |= DevLang(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -4650,10 +4650,10 @@ func (m *Bee) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Languages == nil {
-				m.Languages = &Languages{}
+			if bee.Languages == nil {
+				bee.Languages = &Languages{}
 			}
-			if err := m.Languages.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := bee.Languages.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -4686,10 +4686,10 @@ func (m *Bee) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.ProtoSetup == nil {
-				m.ProtoSetup = &ProtoSetup{}
+			if bee.ProtoSetup == nil {
+				bee.ProtoSetup = &ProtoSetup{}
 			}
-			if err := m.ProtoSetup.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := bee.ProtoSetup.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -4712,7 +4712,7 @@ func (m *Bee) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-			m.IsGateway = bool(v != 0)
+			bee.IsGateway = bool(v != 0)
 		case 17:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Deps", wireType)
@@ -4743,7 +4743,7 @@ func (m *Bee) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Deps = append(m.Deps, string(dAtA[iNdEx:postIndex]))
+			bee.Deps = append(bee.Deps, string(dAtA[iNdEx:postIndex]))
 			iNdEx = postIndex
 		case 18:
 			if wireType != 2 {
@@ -4775,7 +4775,7 @@ func (m *Bee) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Cons = append(m.Cons, string(dAtA[iNdEx:postIndex]))
+			bee.Cons = append(bee.Cons, string(dAtA[iNdEx:postIndex]))
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -5362,7 +5362,7 @@ func (m *Dep) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *Hive) Unmarshal(dAtA []byte) error {
+func (hive *Hive) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -5421,7 +5421,7 @@ func (m *Hive) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Name = string(dAtA[iNdEx:postIndex])
+			hive.Name = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
@@ -5453,7 +5453,7 @@ func (m *Hive) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.PkgName = string(dAtA[iNdEx:postIndex])
+			hive.PkgName = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 3:
 			if wireType != 2 {
@@ -5485,7 +5485,7 @@ func (m *Hive) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.PkgNameCamel = string(dAtA[iNdEx:postIndex])
+			hive.PkgNameCamel = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 4:
 			if wireType != 2 {
@@ -5517,7 +5517,7 @@ func (m *Hive) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Repo = string(dAtA[iNdEx:postIndex])
+			hive.Repo = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 5:
 			if wireType != 2 {
@@ -5549,7 +5549,7 @@ func (m *Hive) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Author = string(dAtA[iNdEx:postIndex])
+			hive.Author = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 8:
 			if wireType != 0 {
@@ -5570,7 +5570,7 @@ func (m *Hive) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-			m.Public = bool(v != 0)
+			hive.Public = bool(v != 0)
 		case 9:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Deps", wireType)
@@ -5600,8 +5600,8 @@ func (m *Hive) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Deps == nil {
-				m.Deps = make(map[string]*Dep)
+			if hive.Deps == nil {
+				hive.Deps = make(map[string]*Dep)
 			}
 			var mapkey string
 			var mapvalue *Dep
@@ -5698,7 +5698,7 @@ func (m *Hive) Unmarshal(dAtA []byte) error {
 					iNdEx += skippy
 				}
 			}
-			m.Deps[mapkey] = mapvalue
+			hive.Deps[mapkey] = mapvalue
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

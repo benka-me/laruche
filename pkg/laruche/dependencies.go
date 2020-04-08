@@ -1,17 +1,17 @@
 package laruche
 
-func (b *Bee) GetSubDependencies() Namespaces {
-	namespaces := make(Namespaces, len(b.Deps))
-	for i, url := range b.Deps {
+func (bee *Bee) GetSubDependencies() Namespaces {
+	namespaces := make(Namespaces, len(bee.Deps))
+	for i, url := range bee.Deps {
 		namespaces[i] = Namespace(url)
 	}
 	return namespaces
 }
 
-func (h *Hive) GetDependencies() Namespaces {
-	namespaces := make(Namespaces, len(h.Deps))
+func (hive *Hive) GetDependencies() Namespaces {
+	namespaces := make(Namespaces, len(hive.Deps))
 	i := 0
-	for url := range h.Deps {
+	for url := range hive.Deps {
 		namespaces[i] = Namespace(url)
 	}
 	return namespaces

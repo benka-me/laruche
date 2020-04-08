@@ -2,7 +2,7 @@ package generator
 
 import (
 	"fmt"
-	_if "github.com/benka-me/hive/go-pkg/cli/if"
+	_if "github.com/benka-me/laruche/pkg/if"
 	"github.com/benka-me/laruche/pkg/laruche"
 	"os"
 )
@@ -17,7 +17,7 @@ func mkdirAll(s string) {
 func agnosticFiles(bee *laruche.Bee) error {
 	repo := bee.Repo
 	pkgName := bee.PkgName
-	repoPath := fmt.Sprintf("%s/src/%s", gopath, repo)
+	repoPath := fmt.Sprintf("%s/%s", sourcePath, repo)
 
 	dirs := []string{
 		// proto files templates

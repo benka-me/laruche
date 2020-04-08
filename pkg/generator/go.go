@@ -9,7 +9,7 @@ type Go laruche.Go
 
 func (g Go) ClientsFile(bee *laruche.Bee) error {
 	repo := bee.Repo
-	repoPath := fmt.Sprintf("%s/src/%s", gopath, repo)
+	repoPath := fmt.Sprintf("%s/%s", sourcePath, repo)
 
 	//generate clients
 	err := Code{
@@ -26,13 +26,13 @@ func (g Go) ClientsFile(bee *laruche.Bee) error {
 
 func (g Go) ServerFiles(bee *laruche.Bee) error {
 	repo := bee.Repo
-	repoPath := fmt.Sprintf("%s/src/%s", gopath, repo)
+	repoPath := fmt.Sprintf("%s/%s", sourcePath, repo)
 
 	//generate main.go
 	main := Code{
 		Interface: bee,
 		Template:  fmt.Sprintf("%s/main-go", GoTemplates),
-		Target:    fmt.Sprintf("%s/src/%s/main.go", gopath, repo),
+		Target:    fmt.Sprintf("%s/%s/main.go", sourcePath, repo),
 		Name:      "main",
 	}
 	err := main.Generate()
@@ -44,7 +44,7 @@ func (g Go) ServerFiles(bee *laruche.Bee) error {
 	server := Code{
 		Interface: bee,
 		Template:  fmt.Sprintf("%s/server-grpc-2.0-go", GoTemplates),
-		Target:    fmt.Sprintf("%s/src/%s/go-pkg/http/rpc/server-grpc-2.0.go", gopath, repo),
+		Target:    fmt.Sprintf("%s/%s/go-pkg/http/rpc/server-grpc-2.0.go", sourcePath, repo),
 		Name:      "server",
 	}
 	err = server.Generate()
@@ -67,12 +67,12 @@ func (g Go) ServerFiles(bee *laruche.Bee) error {
 }
 
 func (g Go) Protoc(bee *laruche.Bee) {
-	repoPath := fmt.Sprintf("%s/src/%s", gopath, bee.Repo)
-	goOut := fmt.Sprintf("%s/src", gopath)
+	repoPath := fmt.Sprintf("%s/%s", sourcePath, bee.Repo)
+	goOut := fmt.Sprintf("%s", sourcePath)
 	args := make([]string, 3)
 	args = []string{
 		fmt.Sprintf("--proto_path=%s/protobuf", repoPath),
-		fmt.Sprintf("-I=%s/src", gopath),
+		fmt.Sprintf("-I=%s", sourcePath),
 		fmt.Sprintf("--%s_out=plugins=grpc:%s", g.Setup.ProtocBinary, goOut),
 	}
 

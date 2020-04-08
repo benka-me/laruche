@@ -13,19 +13,19 @@ func (js Javascript) ClientsFile(bee *laruche.Bee) error {
 
 func (js Javascript) ServerFiles(bee *laruche.Bee) error {
 	//repo := bee.Repo
-	//repoPath := fmt.Sprintf("%s/src/%s", gopath, repo)
+	//repoPath := fmt.Sprintf("%s/src/%s", sourcePath, repo)
 	//var perm os.FileMode = 0777 //TODO change file mode
 	return nil
 }
 
 func (js Javascript) Protoc(bee *laruche.Bee) {
-	repoPath := fmt.Sprintf("%s/src/%s", gopath, bee.Repo)
-	bin := fmt.Sprintf("%s/src/github.com/benka-me/hive/js-pkg/node_modules/.bin/protoc-gen-ts", gopath)
+	repoPath := fmt.Sprintf("%s/%s", sourcePath, bee.Repo)
+	bin := fmt.Sprintf("%s/github.com/benka-me/hive/js-pkg/node_modules/.bin/protoc-gen-ts", sourcePath)
 	jsOut := fmt.Sprintf("%s/js-pkg/src/protobuf", repoPath)
 	args := make([]string, 5)
 	args = []string{
 		fmt.Sprintf("--proto_path=%s/protobuf", repoPath),
-		fmt.Sprintf("-I=%s/src", gopath),
+		fmt.Sprintf("-I=%s", sourcePath),
 		fmt.Sprintf("--plugin=protoc-gen-ts=%s", bin),
 		fmt.Sprintf("--ts_out=service=true:%s", jsOut),
 		fmt.Sprintf("--js_out=import_style=commonjs,binary:%s", jsOut),

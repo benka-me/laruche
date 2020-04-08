@@ -2,6 +2,7 @@ package generator
 
 import (
 	"fmt"
+	"github.com/benka-me/laruche/pkg/config"
 	_if "github.com/benka-me/laruche/pkg/if"
 	"github.com/benka-me/laruche/pkg/laruche"
 	"io/ioutil"
@@ -21,8 +22,8 @@ type Code struct {
 	Name      string
 }
 
-var gopath = os.Getenv("GOPATH")
-var Templates = fmt.Sprintf("%s/src/github.com/benka-me/hive/go-pkg/generator/templates", gopath)
+var sourcePath = config.SourcePath
+var Templates = fmt.Sprintf("%s/github.com/benka-me/hive/go-pkg/generator/templates", sourcePath)
 var GoTemplates = fmt.Sprintf("%s/go", Templates)
 var ProtobufTemplates = fmt.Sprintf("%s/protobuf", Templates)
 

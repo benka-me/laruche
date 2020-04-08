@@ -1,7 +1,7 @@
 package config
 
 import (
-	"fmt"
+	"github.com/benka-me/laruche/pkg/cli/scan"
 	"github.com/benka-me/laruche/pkg/laruche"
 	"os"
 )
@@ -14,9 +14,11 @@ type Bee struct {
 func AddBee(new *laruche.Bee) *Bee {
 	test := GetBee(new.GetNamespace())
 	if test != nil {
-		fmt.Println("CONFIG: add bee: namespace already exist")
-		os.Exit(0)
+		if !scan.StepBool("Namespace existing on your local machine, are you sur you want to re-generate files?") {
+			os.Exit(9)
+		}
 	}
+	RemoveBee(new.GetNamespace())
 	ret := db.Create(&Bee{
 		ID:   new.GetNamespaceStr(),
 		Path: new.Repo,
@@ -24,6 +26,11 @@ func AddBee(new *laruche.Bee) *Bee {
 	return ret.Value.(*Bee)
 }
 
+func RemoveBee(namespace laruche.Namespace) *Bee {
+	b := &Bee{}
+	b = db.Delete(b, "id = ?", namespace).Value.(*Bee)
+	return b
+}
 func GetBee(namespace laruche.Namespace) *Bee {
 	b := &Bee{}
 	b = db.Find(b, "id = ?", namespace).Value.(*Bee)

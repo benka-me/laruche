@@ -16,7 +16,7 @@ func InitBeeAskUser() *Bee {
 	scan.V = validator.New()
 
 	bee.Name = strings.ToLower(scan.Step(
-		"Name of the new bee microservice ",
+		"Name of the new bee micro-service ",
 		"required,lte=20,gte=3",
 		scan.IsAlphanumDash))
 
@@ -41,17 +41,17 @@ func InitBeeAskUser() *Bee {
 	return bee
 }
 
-func (b *Bee) GetLocal(source string) *Bee {
-	if b == nil {
-		return b
+func (bee *Bee) GetLocal(source string) *Bee {
+	if bee == nil {
+		return bee
 	}
-	dat, err := ioutil.ReadFile(fmt.Sprintf("%s/%s/bee.yaml", source, b.Repo))
+	dat, err := ioutil.ReadFile(fmt.Sprintf("%s/%s/bee.yaml", source, bee.Repo))
 	if err != nil {
-		return b
+		return bee
 	}
 
-	_ = yaml.Unmarshal(dat, b)
-	return b
+	_ = yaml.Unmarshal(dat, bee)
+	return bee
 }
 
 func (bee *Bee) SaveLocal(source string) error {
