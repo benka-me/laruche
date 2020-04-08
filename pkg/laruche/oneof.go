@@ -7,3 +7,6 @@ type OneOf interface {
 func (bee *Bee) addDep() {
 
 }
+func (hive *Hive) addDep() {
+
+}

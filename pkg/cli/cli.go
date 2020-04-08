@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/benka-me/laruche/pkg/config"
 	urfave "github.com/urfave/cli"
-	"log"
 	"os"
 	"sort"
 )
@@ -40,7 +39,7 @@ func Run() {
 		},
 		{
 			Name:   "add",
-			Action: initBee(app),
+			Action: add(app),
 			Usage:  "init bee (micro-service)",
 		},
 	}
@@ -54,7 +53,7 @@ func Run() {
 
 	err := cliApp.Run(os.Args)
 	if err != nil {
-		log.Println(err)
+		fmt.Println(err)
 		os.Exit(0)
 	}
 }

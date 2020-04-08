@@ -1,6 +1,7 @@
 package laruche
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 )
@@ -58,20 +59,25 @@ func BeesToNamespacesFrom(arr []*Bee) Namespaces {
 	}
 	return namespaces
 }
-func ArrayToNamespaces(arr []string) Namespaces {
+
+func ArrayToNamespaces(arr []string) (Namespaces, error) {
 	namespaces := make(Namespaces, len(arr))
 	for i, url := range arr {
+		_, _, err := Explode(url)
+		if err != nil {
+			return nil, errors.New(url + " bad namespace")
+		}
 		namespaces[i] = Namespace(url)
 	}
-	return namespaces
+	return namespaces, nil
 }
 
-func Explode(id string) (author, name string) {
+func Explode(id string) (author, name string, err error) {
 	arr := strings.Split(id, "/")
 	if len(arr) == 2 {
-		return arr[0], arr[1]
+		return arr[0], arr[1], nil
 	}
-	return "error", "error"
+	return "error", "error", errors.New("bad namespace")
 }
 
 func (bee *Bee) GetNamespace() Namespace {

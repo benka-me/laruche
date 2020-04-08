@@ -4,6 +4,7 @@ import (
 	"github.com/benka-me/laruche/pkg/cli/scan"
 	"github.com/benka-me/laruche/pkg/config"
 	"github.com/benka-me/laruche/pkg/laruche"
+	"github.com/benka-me/laruche/pkg/local"
 	"github.com/urfave/cli"
 )
 
@@ -24,7 +25,7 @@ func initHive(app *App) cli.ActionFunc {
 		hive := laruche.InitHiveAskUser()
 		setAuthor(hive)
 
-		err := config.SaveLocal(hive)
+		err := local.SaveLocal(hive)
 		if err != nil {
 			return err
 		}
