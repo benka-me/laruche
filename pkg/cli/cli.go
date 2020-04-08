@@ -38,6 +38,11 @@ func Run() {
 				},
 			},
 		},
+		{
+			Name:   "add",
+			Action: initBee(app),
+			Usage:  "init bee (micro-service)",
+		},
 	}
 	cliApp.Action = func(context *urfave.Context) error {
 		fmt.Println(config.GetBee("benka/test"))
