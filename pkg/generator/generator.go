@@ -2,6 +2,7 @@ package generator
 
 import (
 	"fmt"
+	"github.com/benka-me/laruche/pkg/cli/form"
 	"github.com/benka-me/laruche/pkg/config"
 	"github.com/benka-me/laruche/pkg/laruche"
 	"io/ioutil"
@@ -27,7 +28,7 @@ var GoTemplates = fmt.Sprintf("%s/go", Templates)
 var ProtobufTemplates = fmt.Sprintf("%s/protobuf", Templates)
 
 func GenerateAll(bee *laruche.Bee) error {
-	bee.FillDefaultMeta()
+	form.FillDefaultMeta(bee)
 	err := agnosticFiles(bee)
 	if err != nil {
 		return err
@@ -55,7 +56,7 @@ func GenerateAll(bee *laruche.Bee) error {
 }
 
 func GenerateClientsFilesFor(bee *laruche.Bee) error {
-	bee.FillDefaultMeta()
+	form.FillDefaultMeta(bee)
 
 	err := GetDevLang(bee).ClientsFile(bee)
 	return err

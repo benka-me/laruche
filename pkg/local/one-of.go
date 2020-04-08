@@ -2,10 +2,10 @@ package local
 
 import (
 	"errors"
-	"github.com/benka-me/laruche/pkg/laruche"
+	"github.com/benka-me/laruche/pkg/oneof"
 )
 
-func GetOneOfCurrentDir() (laruche.OneOf, error) {
+func GetOneOfCurrentDir() (oneof.OneOf, error) {
 	hive, errHive := GetHiveCurrentDir()
 	bee, errBee := GetBeeCurrentDir()
 
@@ -14,9 +14,9 @@ func GetOneOfCurrentDir() (laruche.OneOf, error) {
 	} else if errHive == nil && errBee == nil {
 		return nil, errors.New("both bee.yaml or hive.yaml found on this folders")
 	} else if errHive == nil {
-		return hive, nil
+		return oneof.Hive(*hive), nil
 	} else if errBee == nil {
-		return bee, nil
+		return oneof.Bee(*bee), nil
 	}
 	return nil, nil
 }

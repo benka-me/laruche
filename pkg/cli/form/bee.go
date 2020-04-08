@@ -1,16 +1,17 @@
-package laruche
+package form
 
 import (
 	"fmt"
-	"github.com/benka-me/hive/go-pkg/cli/scan"
-	"github.com/benka-me/hive/go-pkg/conf"
+	"github.com/benka-me/laruche/pkg/cli/scan"
+	"github.com/benka-me/laruche/pkg/config"
+	"github.com/benka-me/laruche/pkg/laruche"
 	"github.com/go-playground/validator"
 	"strconv"
 	"strings"
 )
 
-func InitBeeAskUser() *Bee {
-	bee := &Bee{}
+func InitBeeAskUser() *laruche.Bee {
+	bee := &laruche.Bee{}
 	scan.V = validator.New()
 
 	bee.Name = strings.ToLower(scan.Step(
@@ -34,27 +35,27 @@ func InitBeeAskUser() *Bee {
 		func(s string) error { return nil }))
 	bee.Port = int32(pInt)
 
-	bee.FillDefaultMeta()
+	FillDefaultMeta(bee)
 
 	return bee
 }
 
-func (bee *Bee) FillDefaultMeta() {
+func FillDefaultMeta(bee *laruche.Bee) {
 	bee.PkgNameCamel = strings.Title(scan.KebabToCamelCase(bee.PkgName))
-	bee.Author = conf.GetUsername()
-	bee.ProtoSetup = &ProtoSetup{
+	bee.Author = config.GetState().Username
+	bee.ProtoSetup = &laruche.ProtoSetup{
 		Files: []string{
 			fmt.Sprintf("%s.proto", bee.PkgName),
 			fmt.Sprintf("rpc-%s.proto", bee.PkgName),
 		},
 	}
 
-	bee.Languages = &Languages{
-		Go: &Go{Setup: &LanguageSetup{
+	bee.Languages = &laruche.Languages{
+		Go: &laruche.Go{Setup: &laruche.LanguageSetup{
 			Active:       true,
 			ProtocBinary: "gogoslick",
 		}},
-		Javascript: &Javascript{Setup: &LanguageSetup{
+		Javascript: &laruche.Javascript{Setup: &laruche.LanguageSetup{
 			Active: true,
 		}},
 	}
