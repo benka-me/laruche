@@ -41,17 +41,31 @@ func InitBeeAskUser() *Bee {
 	return bee
 }
 
-func (b *Bee) GetLocal() *Bee {
+func (b *Bee) GetLocal(source string) *Bee {
 	if b == nil {
 		return b
 	}
-	dat, err := ioutil.ReadFile(fmt.Sprintf("%s/src/%s/bee.yaml", "", b.Repo))
+	dat, err := ioutil.ReadFile(fmt.Sprintf("%s/%s/bee.yaml", source, b.Repo))
 	if err != nil {
 		return b
 	}
 
 	_ = yaml.Unmarshal(dat, b)
 	return b
+}
+
+func (bee *Bee) SaveLocal(source string) error {
+	data, err := yaml.Marshal(bee)
+	if err != nil {
+		return err
+	}
+
+	path := fmt.Sprintf("%s/%s/bee.yaml", source, bee.Repo)
+	err = ioutil.WriteFile(path, data, 0755)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func GetLocalBeeCurrentDir() (Bee, error) {
@@ -68,22 +82,6 @@ func GetLocalBeeCurrentDir() (Bee, error) {
 	}
 
 	return bee, nil
-}
-
-func (bee *Bee) SaveLocal() error {
-	data, err := yaml.Marshal(bee)
-	if err != nil {
-		return err
-	}
-
-	path := fmt.Sprintf("%s/src/%s/bee.yaml", "", bee.Repo)
-	err = ioutil.WriteFile(path, data, 0755)
-	if err != nil {
-		return err
-	}
-
-	conf.AddBee(bee.GetNamespaceStr(), bee.Repo)
-	return nil
 }
 
 func (bee *Bee) FillDefaultMeta() {

@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"fmt"
 	"github.com/benka-me/laruche/pkg/config"
 	urfave "github.com/urfave/cli"
 	"log"
@@ -9,11 +10,13 @@ import (
 )
 
 type App struct {
-	config.State
+	State *config.State
 }
 
 func Run() {
-	app := App{}
+	app := App{
+		State: config.Init(),
+	}
 	cliApp := urfave.NewApp()
 	cliApp.Name = "Hive"
 	cliApp.Usage = "Manage your micro-services based server"
@@ -48,6 +51,7 @@ func Run() {
 		},
 	}
 	cliApp.Action = func(context *urfave.Context) error {
+		fmt.Println(config.GetBee("benka/test").GetPath())
 		return nil
 	}
 
