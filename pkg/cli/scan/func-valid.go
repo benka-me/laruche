@@ -5,7 +5,7 @@ import (
 	"regexp"
 )
 
-type stringValid func(s string) error
+type StringValid func(s string) error
 
 func IsAlphaNum(s string) error {
 	var rgx = regexp.MustCompile(`^[a-zA-Z0-9]+$`)
@@ -34,8 +34,8 @@ func IsAlphanumDash(s string) error {
 	}
 }
 
-func PortValidator(Public bool) stringValid {
-	var portValidator stringValid
+func PortValidator(Public bool) StringValid {
+	var portValidator StringValid
 
 	if Public {
 		portValidator = func(s string) error {

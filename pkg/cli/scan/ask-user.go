@@ -80,7 +80,7 @@ func StepBool(title string) bool {
 
 	return tmp == "y"
 }
-func Step(title, validate string, custom stringValid) string {
+func Step(title, validate string, custom StringValid) string {
 	var tmp string
 
 	reader := bufio.NewReader(os.Stdin)

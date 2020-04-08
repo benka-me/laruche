@@ -19,6 +19,8 @@ func (s State) UpdateCredential() {
 
 }
 func (s *State) GetCredential() *State {
-	s = db.Find(s, AuthId).Value.(*State)
-	return s
+	if s == nil {
+		return nil
+	}
+	return db.Find(s, AuthId).Value.(*State)
 }

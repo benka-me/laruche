@@ -7,15 +7,15 @@ import (
 )
 
 const (
-	localEtc     = "/usr/local/etc/lar"
+	//localEtc     = "/usr/local/etc/lar"
 	localVar     = "/usr/local/var/lar"
 	databasePath = localVar + "/laruche.db"
 )
 
 var (
-	LaruchePath = os.Getenv("HOME") + "/laruche"
-	SourcePath  = os.Getenv("GOPATH") + "/src"
-	db, dberr   = gorm.Open("sqlite3", databasePath)
+	//LaruchePath = os.Getenv("HOME") + "/laruche"
+	SourcePath = os.Getenv("GOPATH") + "/src"
+	db, dberr  = gorm.Open("sqlite3", databasePath)
 )
 
 type State struct {

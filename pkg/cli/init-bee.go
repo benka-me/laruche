@@ -7,10 +7,14 @@ import (
 	"github.com/urfave/cli"
 )
 
-func initBee(app App) cli.ActionFunc {
+func initBee(app *App) cli.ActionFunc {
 	return func(context *cli.Context) error {
 		bee := laruche.InitBeeAskUser()
-		config.AddBee(bee)
+		err := config.AddBee(bee)
+		if err != nil {
+			return nil
+		}
+
 		generator.GenerateAll(bee)
 		return bee.SaveLocal(config.SourcePath)
 	}

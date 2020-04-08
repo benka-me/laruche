@@ -14,7 +14,7 @@ type App struct {
 }
 
 func Run() {
-	app := App{
+	app := &App{
 		State: config.Init(),
 	}
 	cliApp := urfave.NewApp()
@@ -35,7 +35,7 @@ func Run() {
 		},
 	}
 	cliApp.Action = func(context *urfave.Context) error {
-		fmt.Println(config.GetBee("benka/test").GetPath())
+		fmt.Println(config.GetBee("benka/test"))
 		return nil
 	}
 
