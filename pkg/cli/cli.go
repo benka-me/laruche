@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"github.com/benka-me/laruche/pkg/config"
 	urfave "github.com/urfave/cli"
 	"log"
 	"os"
@@ -8,6 +9,7 @@ import (
 )
 
 type App struct {
+	config.State
 }
 
 func Run() {
@@ -44,6 +46,9 @@ func Run() {
 				//},
 			},
 		},
+	}
+	cliApp.Action = func(context *urfave.Context) error {
+		return nil
 	}
 
 	sort.Sort(urfave.FlagsByName(cliApp.Flags))
