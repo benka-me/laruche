@@ -36,7 +36,7 @@ func GetHiveCurrentDir() (*laruche.Hive, error) {
 	return hive, nil
 }
 
-func SaveLocal(hive *laruche.Hive) error {
+func SaveHive(hive *laruche.Hive) error {
 	data, err := yaml.Marshal(hive)
 	if err != nil {
 		return err

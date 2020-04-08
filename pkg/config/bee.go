@@ -15,7 +15,7 @@ func AddBee(new *laruche.Bee) error {
 	test, _ := GetBee(new.GetNamespace())
 	if test != nil {
 		if !scan.StepBool("GetNamespace existing on your local machine, are you sur you want to re-generate files?") {
-			os.Exit(9)
+			os.Exit(0)
 		}
 	}
 	_, _ = RemoveBee(new.GetNamespace())
@@ -33,9 +33,12 @@ func RemoveBee(namespace laruche.Namespace) (*Bee, error) {
 }
 
 func GetBee(namespace laruche.Namespace) (*Bee, error) {
-	b := &Bee{}
-	b = db.Find(b, "id = ?", namespace).Value.(*Bee)
-	return b, nil
+	ret := db.Find(&Bee{}, "id = ?", namespace)
+	if ret.Error != nil {
+		return nil, ret.Error
+	}
+
+	return ret.Value.(*Bee), nil
 }
 
 func (b *Bee) GetPath() string {

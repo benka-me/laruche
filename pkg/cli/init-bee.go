@@ -4,6 +4,7 @@ import (
 	"github.com/benka-me/laruche/pkg/config"
 	"github.com/benka-me/laruche/pkg/generator"
 	"github.com/benka-me/laruche/pkg/laruche"
+	"github.com/benka-me/laruche/pkg/local"
 	"github.com/urfave/cli"
 )
 
@@ -20,6 +21,6 @@ func initBee(app *App) cli.ActionFunc {
 			return nil
 		}
 
-		return bee.SaveLocal(config.SourcePath)
+		return local.SaveBee(bee)
 	}
 }

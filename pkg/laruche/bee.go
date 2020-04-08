@@ -5,8 +5,6 @@ import (
 	"github.com/benka-me/hive/go-pkg/cli/scan"
 	"github.com/benka-me/hive/go-pkg/conf"
 	"github.com/go-playground/validator"
-	"gopkg.in/yaml.v2"
-	"io/ioutil"
 	"strconv"
 	"strings"
 )
@@ -39,49 +37,6 @@ func InitBeeAskUser() *Bee {
 	bee.FillDefaultMeta()
 
 	return bee
-}
-
-func (bee *Bee) GetLocal(source string) *Bee {
-	if bee == nil {
-		return bee
-	}
-	dat, err := ioutil.ReadFile(fmt.Sprintf("%s/%s/bee.yaml", source, bee.Repo))
-	if err != nil {
-		return bee
-	}
-
-	_ = yaml.Unmarshal(dat, bee)
-	return bee
-}
-
-func (bee *Bee) SaveLocal(source string) error {
-	data, err := yaml.Marshal(bee)
-	if err != nil {
-		return err
-	}
-
-	path := fmt.Sprintf("%s/%s/bee.yaml", source, bee.Repo)
-	err = ioutil.WriteFile(path, data, 0755)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func GetLocalBeeCurrentDir() (Bee, error) {
-	bee := Bee{}
-	dat, err := ioutil.ReadFile("./bee.yaml")
-
-	if err != nil {
-		return bee, err
-	}
-
-	err = yaml.Unmarshal(dat, &bee)
-	if err != nil {
-		return bee, err
-	}
-
-	return bee, nil
 }
 
 func (bee *Bee) FillDefaultMeta() {

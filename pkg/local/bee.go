@@ -39,3 +39,17 @@ func GetBeeCurrentDir() (*laruche.Bee, error) {
 
 	return bee, nil
 }
+
+func SaveBee(bee *laruche.Bee) error {
+	data, err := yaml.Marshal(bee)
+	if err != nil {
+		return err
+	}
+
+	path := fmt.Sprintf("%s/%s/bee.yaml", config.SourcePath, bee.Repo)
+	err = ioutil.WriteFile(path, data, 0755)
+	if err != nil {
+		return err
+	}
+	return nil
+}

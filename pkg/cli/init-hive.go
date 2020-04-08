@@ -25,7 +25,7 @@ func initHive(app *App) cli.ActionFunc {
 		hive := laruche.InitHiveAskUser()
 		setAuthor(hive)
 
-		err := local.SaveLocal(hive)
+		err := local.SaveHive(hive)
 		if err != nil {
 			return err
 		}
