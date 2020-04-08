@@ -21,6 +21,13 @@ func setAuthor(hive *laruche.Hive) {
 
 func Hive(app *App) cli.ActionFunc {
 	return func(context *cli.Context) error {
+		hive := laruche.InitHiveAskUser()
+		setAuthor(hive)
+
+		err := config.SaveLocal(hive)
+		if err != nil {
+			return err
+		}
 		return nil
 	}
 }

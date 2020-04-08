@@ -14,7 +14,7 @@ type Bee struct {
 func AddBee(new *laruche.Bee) error {
 	test, _ := GetBee(new.GetNamespace())
 	if test != nil {
-		if !scan.StepBool("Namespace existing on your local machine, are you sur you want to re-generate files?") {
+		if !scan.StepBool("GetNamespace existing on your local machine, are you sur you want to re-generate files?") {
 			os.Exit(9)
 		}
 	}

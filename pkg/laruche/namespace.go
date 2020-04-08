@@ -77,11 +77,11 @@ func Explode(id string) (author, name string) {
 func (bee *Bee) GetNamespace() Namespace {
 	return implode(bee.Author, bee.Name)
 }
-func (hive *Hive) Namespace() Namespace {
+func (hive *Hive) GetNamespace() Namespace {
 	return implode(hive.Author, hive.Name)
 }
-func (hive *Hive) NamespaceStr() string {
-	return string(hive.Namespace())
+func (hive *Hive) GetNamespaceStr() string {
+	return string(hive.GetNamespace())
 }
 
 func (bee *Bee) GetNamespaceStr() string {
