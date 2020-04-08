@@ -13,9 +13,9 @@ const (
 )
 
 var (
-	//LaruchePath = os.Getenv("HOME") + "/laruche"
-	SourcePath = os.Getenv("GOPATH") + "/src"
-	db, dberr  = gorm.Open("sqlite3", databasePath)
+	LaruchePath = os.Getenv("HOME") + "/laruche"
+	SourcePath  = os.Getenv("GOPATH") + "/src"
+	db, dberr   = gorm.Open("sqlite3", databasePath)
 )
 
 type State struct {
