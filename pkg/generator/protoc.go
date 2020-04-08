@@ -3,14 +3,16 @@ package generator
 import (
 	"bytes"
 	"fmt"
-	_if "github.com/benka-me/laruche/pkg/if"
 	"github.com/benka-me/laruche/pkg/laruche"
+	"os"
 	"os/exec"
 )
 
 func Protoc(bee laruche.Bee) {
 	lgs, err := GetLangs(bee.Languages)
-	_if.ErrorExit("protoc to pkgs generators", err)
+	if err != nil {
+		os.Exit(0)
+	}
 
 	for _, lg := range *lgs {
 		lg.Protoc(&bee)

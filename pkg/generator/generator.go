@@ -3,7 +3,6 @@ package generator
 import (
 	"fmt"
 	"github.com/benka-me/laruche/pkg/config"
-	_if "github.com/benka-me/laruche/pkg/if"
 	"github.com/benka-me/laruche/pkg/laruche"
 	"io/ioutil"
 	"os"
@@ -27,30 +26,39 @@ var Templates = fmt.Sprintf("%s/github.com/benka-me/hive/go-pkg/generator/templa
 var GoTemplates = fmt.Sprintf("%s/go", Templates)
 var ProtobufTemplates = fmt.Sprintf("%s/protobuf", Templates)
 
-func GenerateAll(bee *laruche.Bee) {
+func GenerateAll(bee *laruche.Bee) error {
 	bee.FillDefaultMeta()
 	err := agnosticFiles(bee)
-	_if.ErrorExit("generate all, agnostic files", err)
+	if err != nil {
+		return err
+	}
 
 	generators, err := GetLangs(bee.Languages)
-	_if.ErrorExit("generate all, to lang generator", err)
+	if err != nil {
+		return err
+	}
 
 	for _, lang := range *generators {
 		lang.Protoc(bee)
 	}
 
 	err = GetDevLang(bee).ServerFiles(bee)
-	_if.ErrorExit("generate all entry points files", err)
+	if err != nil {
+		return err
+	}
 
 	err = GetDevLang(bee).ClientsFile(bee)
-	_if.ErrorExit("46 generate clients file", err)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-func GenerateClientsFilesFor(bee *laruche.Bee) {
+func GenerateClientsFilesFor(bee *laruche.Bee) error {
 	bee.FillDefaultMeta()
 
 	err := GetDevLang(bee).ClientsFile(bee)
-	_if.ErrorExit("generate clients files", err)
+	return err
 }
 
 func (code Code) Generate() error {

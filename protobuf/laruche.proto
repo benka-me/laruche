@@ -1,7 +1,7 @@
 syntax = "proto3";
-package core;
+package laruche;
 
-option go_package = "github.com/benka-me/hive-server-core/go-pkg/core";
+option go_package = "github.com/benka-me/laruche/go-pkg/laruche";
 import "github.com/benka-me/cell-user/protobuf/user.proto";
 
 enum DevLang {

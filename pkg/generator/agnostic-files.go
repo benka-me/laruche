@@ -2,16 +2,14 @@ package generator
 
 import (
 	"fmt"
-	_if "github.com/benka-me/laruche/pkg/if"
 	"github.com/benka-me/laruche/pkg/laruche"
 	"os"
 )
 
-var dirPerm os.FileMode = 0777
+var dirPerm os.FileMode = 0755
 
-func mkdirAll(s string) {
-	err := os.MkdirAll(s, dirPerm)
-	_if.ErrorExit("mkdir all "+s, err)
+func mkdirAll(s string) error {
+	return os.MkdirAll(s, dirPerm)
 }
 
 func agnosticFiles(bee *laruche.Bee) error {
@@ -29,7 +27,9 @@ func agnosticFiles(bee *laruche.Bee) error {
 		fmt.Sprintf("%s/js-pkg/src/protobuf", repoPath), //javascript protobuf generated packages dirs
 	}
 	for _, dir := range dirs {
-		mkdirAll(dir)
+		if err := mkdirAll(dir); err != nil {
+			return err
+		}
 	}
 
 	//generate defs.proto file
