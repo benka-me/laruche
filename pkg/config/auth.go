@@ -6,21 +6,17 @@ import (
 
 const AuthId = 1
 
-func CreateCredential() {
+func CreateState() {
 	e := db.Create(&State{
-		ID:        AuthId,
-		Username:  "haha",
-		AuthToken: "jhkasdfg;asgfariuegiu3hh59ghp",
+		ID: AuthId,
 	})
 	fmt.Println("e: ", e)
 }
 
-func (s State) UpdateCredential() {
+func (s State) UpdateState() {
 
 }
-func (s *State) GetCredential() *State {
-	if s == nil {
-		return nil
-	}
-	return db.Find(s, AuthId).Value.(*State)
+
+func GetState() *State {
+	return db.Find(&State{}, AuthId).Value.(*State)
 }

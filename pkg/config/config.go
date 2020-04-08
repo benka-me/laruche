@@ -51,6 +51,5 @@ func initDB() {
 // Init function will migrate database if it's not ready
 func Init() *State {
 	initDB()
-	state := &State{}
-	return state.GetCredential()
+	return GetState()
 }
