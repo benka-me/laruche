@@ -31,6 +31,11 @@ func Run() {
 					Action: initBee(app),
 					Usage:  "init bee (micro-service)",
 				},
+				{
+					Name:   "hive",
+					Action: initHive(app),
+					Usage:  "init hive (server)",
+				},
 			},
 		},
 	}

@@ -19,7 +19,7 @@ func setAuthor(hive *laruche.Hive) {
 	}
 }
 
-func Hive(app *App) cli.ActionFunc {
+func initHive(app *App) cli.ActionFunc {
 	return func(context *cli.Context) error {
 		hive := laruche.InitHiveAskUser()
 		setAuthor(hive)
