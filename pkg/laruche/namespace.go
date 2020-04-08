@@ -89,7 +89,6 @@ func (hive *Hive) GetNamespace() Namespace {
 func (hive *Hive) GetNamespaceStr() string {
 	return string(hive.GetNamespace())
 }
-
 func (bee *Bee) GetNamespaceStr() string {
 	return string(bee.GetNamespace())
 }

@@ -12,3 +12,11 @@ func (m MBees) Map(fn MBeeFunc) MBees {
 	}
 	return m
 }
+
+type NamespaceIter func(int, Namespace)
+
+func (namespaces Namespaces) Map(fn NamespaceIter) {
+	for i, n := range namespaces {
+		fn(i, n)
+	}
+}

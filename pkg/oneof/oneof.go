@@ -1,8 +1,8 @@
 package oneof
 
 import (
-	"fmt"
 	"github.com/benka-me/laruche/pkg/laruche"
+	"github.com/benka-me/laruche/pkg/manager"
 )
 
 type OneOf interface {
@@ -17,13 +17,15 @@ func (bee Bee) AddDep(depMode bool, namespaces laruche.Namespaces) error {
 		namespaces = laruche.Bee(bee).GetSubDependencies()
 	}
 
-	fmt.Println(namespaces)
-	return nil
+	var lb = laruche.Bee(bee)
+	return manager.BeeAddDependencies(&lb, namespaces)
 }
 
 func (hive Hive) AddDep(depMode bool, namespaces laruche.Namespaces) error {
 	if depMode {
 		namespaces = laruche.Hive(hive).GetDependencies()
 	}
-	return nil
+
+	var lh = laruche.Hive(hive)
+	return manager.HiveAddDependencies(&lh, namespaces)
 }
