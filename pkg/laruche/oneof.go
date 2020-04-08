@@ -1,12 +1,20 @@
 package laruche
 
 type OneOf interface {
-	addDep()
+	AddDep(bool, Namespaces) error
 }
 
-func (bee *Bee) addDep() {
+func (bee *Bee) AddDep(depMode bool, namespaces Namespaces) error {
+	if depMode {
+		namespaces = bee.GetSubDependencies()
+	}
 
+	return nil
 }
-func (hive *Hive) addDep() {
 
+func (hive *Hive) AddDep(depMode bool, namespaces Namespaces) error {
+	if depMode {
+		namespaces = hive.GetDependencies()
+	}
+	return nil
 }
