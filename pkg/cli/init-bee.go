@@ -15,7 +15,11 @@ func initBee(app *App) cli.ActionFunc {
 			return nil
 		}
 
-		generator.GenerateAll(bee)
+		err = generator.GenerateAll(bee)
+		if err != nil {
+			return nil
+		}
+
 		return bee.SaveLocal(config.SourcePath)
 	}
 }

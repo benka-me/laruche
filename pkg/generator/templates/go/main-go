@@ -1,11 +1,12 @@
 package main
 
 import (
-	"github.com/benka-me/hive/go-pkg/engine"
+	"github.com/benka-me/laruche/pkg/discover"
 	"github.com/urfave/cli"
 	"{{.Repo}}/go-pkg/http/rpc"
-	"log"
 	"os"
+	"fmt"
+	"log"
 )
 
 func main() {
@@ -15,10 +16,14 @@ func main() {
 			Name: "dev",
 			Action: func(context *cli.Context) error {
 				if len(os.Args) < 3 {
-					log.Fatal("usage: exec dev author/service-name")
+			        fmt.Println("usage: exec author/service-name")
+			        os.Exit(0)
 				}
-				rcf := engine.Parse(os.Args[2], true)
-				rpc.Server_2_0(*rcf)
+				engine, err := discover.ParseEngine(os.Args[2], true)
+		        if err != nil {
+			        log.Fatal(err)
+		        }
+				rpc.Server_2_0(*engine)
 				return nil
 			},
 		},
@@ -26,10 +31,14 @@ func main() {
 
 	app.Action = func(c *cli.Context) error {
 		if len(os.Args) < 2 {
-			log.Fatal("usage: exec author/service-name")
+			fmt.Println("usage: exec author/service-name")
+			os.Exit(0)
 		}
-		rcf := engine.Parse(os.Args[1], false)
-		rpc.Server_2_0(*rcf)
+		engine, err := discover.ParseEngine(os.Args[1], false)
+		if err != nil {
+			log.Fatal(err)
+		}
+		rpc.Server_2_0(*engine)
 		return nil
 	}
 

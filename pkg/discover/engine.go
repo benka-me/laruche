@@ -1,4 +1,4 @@
-package engine
+package discover
 
 import (
 	"errors"
@@ -45,7 +45,7 @@ func (r *Engine) GrpcConn(namespace string, gateway bool, options ...grpc.DialOp
 	return grpc.Dial(address, options...)
 }
 
-func Parse(namespace string, dev bool) (*Engine, error) {
+func ParseEngine(namespace string, dev bool) (*Engine, error) {
 	hive, err := config.GetHive(namespace)
 	if err != nil {
 		return &Engine{}, err

@@ -5,7 +5,7 @@ package rpc
 import (
     "google.golang.org/grpc"
 	"strconv"
-	"github.com/benka-me/hive/go-pkg/engine"
+	"github.com/benka-me/laruche/pkg/discover"
 	"fmt"
 {{.Import}}
 )
@@ -18,7 +18,7 @@ type Clients struct {
 {{.Vars}}
 }
 
-func    initClients(rconf engine.RunConfig,  options ...grpc.DialOption) Clients {
+func    initClients(engine discover.Engine,  options ...grpc.DialOption) Clients {
 {{.Init}}
     return Clients{
 {{.Return}}

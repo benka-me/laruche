@@ -1,6 +1,6 @@
-	conn{{.PkgNameCamel}}, err := rconf.GrpcConn("{{.Author}}/{{.Name}}", false, options...)
+	conn{{.PkgNameCamel}}, err := engine.GrpcConn("{{.Author}}/{{.Name}}", false, options...)
 	if err != nil {panic("Cannot dial")}
 
-	conn{{.PkgNameCamel}}Gateway, err := rconf.GrpcConn("{{.Author}}/{{.Name}}", true, options...)
+	conn{{.PkgNameCamel}}Gateway, err := engine.GrpcConn("{{.Author}}/{{.Name}}", true, options...)
 	if err != nil {panic("Cannot dial")}
 

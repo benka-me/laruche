@@ -22,7 +22,7 @@ type Code struct {
 }
 
 var sourcePath = config.SourcePath
-var Templates = fmt.Sprintf("%s/github.com/benka-me/hive/go-pkg/generator/templates", sourcePath)
+var Templates = fmt.Sprintf("%s/github.com/benka-me/laruche/pkg/generator/templates", sourcePath)
 var GoTemplates = fmt.Sprintf("%s/go", Templates)
 var ProtobufTemplates = fmt.Sprintf("%s/protobuf", Templates)
 
