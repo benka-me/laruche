@@ -11,7 +11,7 @@ func HiveAddDependencies(hive *laruche.Hive, namespaces laruche.Namespaces) erro
 		return errors.New("hive == nil")
 	}
 
-	all := laruche.Append(namespaces, hive.GetDependencies()...)
+	all := laruche.AppendUnique(namespaces, hive.GetDependencies()...)
 	ctx := newContext(hive)
 	return all.Map(func(i int, nspace laruche.Namespace) error {
 		toAdd, err := absolute.GetBee(nspace)

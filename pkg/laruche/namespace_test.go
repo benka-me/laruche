@@ -49,7 +49,7 @@ func TestNamespaces_Append(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := tt.namespaces.Append(tt.args.src...); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("Append() = %v, want %v", got, tt.want)
+				t.Errorf("AppendUnique() = %v, want %v", got, tt.want)
 			}
 		})
 	}

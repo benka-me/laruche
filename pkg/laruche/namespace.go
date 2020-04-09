@@ -15,7 +15,7 @@ func implode(author, name string) Namespace {
 	return Namespace(fmt.Sprintf("%s/%s", author, name))
 }
 
-func (np Namespace) NamespaceStr() string {
+func (np Namespace) String() string {
 	return string(np)
 }
 
@@ -28,18 +28,37 @@ func (nps Namespaces) String() []string {
 }
 
 func appendOne(dest Namespaces, src Namespace) Namespaces {
-	if !dest.contains(src) {
+	if !dest.Contains(src) {
+		return append(dest, src)
+	}
+	return dest
+}
+func appendOneString(dest []string, src string) []string {
+	if !arrayContainsString(dest, src) {
 		return append(dest, src)
 	}
 	return dest
 }
 
 func (namespaces *Namespaces) Append(src ...Namespace) *Namespaces {
-	*namespaces = Append(*namespaces, src...)
+	*namespaces = AppendUnique(*namespaces, src...)
 	return namespaces
 }
 
-func Append(dest Namespaces, src ...Namespace) Namespaces {
+func AppendUniqueString(dest []string, src ...string) []string {
+	if dest == nil {
+		dest = make([]string, 0)
+	}
+	if len(src) == 0 {
+		return dest
+	} else if len(src) == 1 {
+		return appendOneString(dest, src[0])
+	} else {
+		return AppendUniqueString(appendOneString(dest, src[0]), src[1:]...)
+	}
+}
+
+func AppendUnique(dest Namespaces, src ...Namespace) Namespaces {
 	if dest == nil {
 		dest = make(Namespaces, 0)
 	}
@@ -48,11 +67,19 @@ func Append(dest Namespaces, src ...Namespace) Namespaces {
 	} else if len(src) == 1 {
 		return appendOne(dest, src[0])
 	} else {
-		return Append(appendOne(dest, src[0]), src[1:]...)
+		return AppendUnique(appendOne(dest, src[0]), src[1:]...)
 	}
 }
 
-func (nps Namespaces) contains(str Namespace) bool {
+func arrayContainsString(arr []string, str string) bool {
+	for _, a := range arr {
+		if a == str {
+			return true
+		}
+	}
+	return false
+}
+func (nps Namespaces) Contains(str Namespace) bool {
 	for _, a := range nps {
 		if a == str {
 			return true
@@ -67,7 +94,7 @@ func (nps *Namespaces) Push(new Namespace) {
 			return
 		}
 	}
-	*nps = append(*nps, new)
+	*nps = AppendUnique(*nps, new)
 }
 func BeesToNamespacesFrom(arr []*Bee) Namespaces {
 	namespaces := make(Namespaces, len(arr))

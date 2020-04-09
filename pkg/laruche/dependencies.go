@@ -24,3 +24,25 @@ func (bee *Bee) PushDependency(namespace Namespace) *Bee {
 	bee.Deps = append(bee.Deps, string(namespace))
 	return bee
 }
+func (bee *Bee) PushDependencies(namespaces Namespaces) *Bee {
+	if bee.Deps == nil {
+		bee.Deps = make([]string, 0)
+	}
+	bee.Deps = AppendUniqueString(bee.Deps, namespaces.String()...)
+	return bee
+}
+
+func (bee *Bee) PushConsumer(namespace Namespace) *Bee {
+	if bee.Cons == nil {
+		bee.Cons = make([]string, 0)
+	}
+	bee.Cons = AppendUniqueString(bee.Cons, namespace.String())
+	return bee
+}
+func (bee *Bee) PushConsumers(namespaces Namespaces) *Bee {
+	if bee.Cons == nil {
+		bee.Cons = make([]string, 0)
+	}
+	bee.Cons = AppendUniqueString(bee.Cons, namespaces.String()...)
+	return bee
+}
