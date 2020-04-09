@@ -31,6 +31,9 @@ func RemoveBee(namespace laruche.Namespace) (*Bee, error) {
 	b = db.Delete(b, "id = ?", namespace).Value.(*Bee)
 	return b, nil
 }
+func RemoveAllBee() {
+	db.Delete(&Bee{})
+}
 
 func GetBee(namespace laruche.Namespace) (*Bee, error) {
 	ret := db.Find(&Bee{}, "id = ?", namespace)

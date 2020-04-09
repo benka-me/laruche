@@ -15,7 +15,7 @@ func FakeBees(bees []*laruche.Bee) laruche.Beez {
 	for i, bee := range bees {
 		form.FillDefaultMeta(bee)
 		bee.Repo = "test/" + bee.Name
-		bee.Author = "meliponi"
+		bee.Author = "benka-me"
 		bee.Port = int32(gofakeit.Number(200, 65000))
 		bee.Public = true
 		bee.License = gofakeit.RandString([]string{"MIT", "AGPL2", "AGPL3", "Apache"})
