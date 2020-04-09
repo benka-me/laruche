@@ -3,8 +3,8 @@ package discover
 import (
 	"errors"
 	"fmt"
+	"github.com/benka-me/laruche/pkg/get-local"
 	"github.com/benka-me/laruche/pkg/laruche"
-	"github.com/benka-me/laruche/pkg/local"
 	"google.golang.org/grpc"
 	"strconv"
 )
@@ -46,7 +46,7 @@ func (r *Engine) GrpcConn(namespace string, gateway bool, options ...grpc.DialOp
 }
 
 func ParseEngine(namespace string, dev bool) (*Engine, error) {
-	hive, err := local.GetHive(namespace)
+	hive, err := local.GetHive(laruche.Namespace(namespace))
 	if err != nil {
 		return &Engine{}, err
 	}

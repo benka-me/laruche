@@ -19,7 +19,7 @@ func (np Namespace) NamespaceStr() string {
 	return string(np)
 }
 
-func (nps Namespaces) Array() []string {
+func (nps Namespaces) String() []string {
 	arr := make([]string, len(nps))
 	for i, url := range nps {
 		arr[i] = string(url)
@@ -34,13 +34,21 @@ func appendOne(dest Namespaces, src Namespace) Namespaces {
 	return dest
 }
 
-func AppendNamespace(dest Namespaces, src ...Namespace) Namespaces {
+func (namespaces *Namespaces) Append(src ...Namespace) *Namespaces {
+	*namespaces = Append(*namespaces, src...)
+	return namespaces
+}
+
+func Append(dest Namespaces, src ...Namespace) Namespaces {
+	if dest == nil {
+		dest = make(Namespaces, 0)
+	}
 	if len(src) == 0 {
 		return dest
 	} else if len(src) == 1 {
 		return appendOne(dest, src[0])
 	} else {
-		return AppendNamespace(appendOne(dest, src[0]), src[1:]...)
+		return Append(appendOne(dest, src[0]), src[1:]...)
 	}
 }
 
@@ -53,6 +61,14 @@ func (nps Namespaces) contains(str Namespace) bool {
 	return false
 }
 
+func (nps *Namespaces) Push(new Namespace) {
+	for _, a := range *nps {
+		if a == new {
+			return
+		}
+	}
+	*nps = append(*nps, new)
+}
 func BeesToNamespacesFrom(arr []*Bee) Namespaces {
 	namespaces := make(Namespaces, len(arr))
 	for i, bee := range arr {

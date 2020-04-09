@@ -6,7 +6,9 @@ import (
 	"github.com/brianvoe/gofakeit"
 )
 
-var Alpha = FakeBees(AlphabetSeed)
+var AlphaBees = FakeBees(AlphabetSeed)
+var AlphaBeesMap = FakeMBees(AlphabetSeed)
+
 var Sample1 = FakeBees(Sample1Seed)
 
 func FakeBees(bees []*laruche.Bee) laruche.Beez {

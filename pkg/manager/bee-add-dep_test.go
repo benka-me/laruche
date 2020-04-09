@@ -1,11 +1,18 @@
-package manager
+package manager_test
 
 import (
 	"github.com/benka-me/laruche/pkg/laruche"
+	"github.com/benka-me/laruche/pkg/laruche/faker"
+	"github.com/benka-me/laruche/pkg/manager"
 	"testing"
 )
 
 func TestBeeAddDependencies(t *testing.T) {
+	//config.RemoveAllBee()
+	//faker.AlphaBees.Map(func(i int, bee *laruche.Bee) error {
+	//	_ = cli.ActionInitBee(bee)
+	//	return nil
+	//})
 	type args struct {
 		bee        *laruche.Bee
 		namespaces laruche.Namespaces
@@ -16,36 +23,18 @@ func TestBeeAddDependencies(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "regular 1",
+			name: "d -> e",
 			args: args{
-				bee: &laruche.Bee{
-					Name:         "",
-					PkgName:      "",
-					PkgNameCamel: "",
-					Repo:         "",
-					Author:       "",
-					Port:         0,
-					Public:       false,
-					License:      "",
-					Description:  "",
-					Keywords:     "",
-					Tag:          "",
-					DevLang:      0,
-					Languages:    nil,
-					ProtoSetup:   nil,
-					IsGateway:    false,
-					Deps:         nil,
-					Cons:         nil,
-				},
-				namespaces: nil,
+				bee:        faker.AlphaBeesMap["benka-me/dddd"],
+				namespaces: laruche.Namespaces{"benka-me/eeee"},
 			},
 			wantErr: false,
 		},
-		// TODO: Add test cases.
 	}
+	tests[0].args.bee.Deps = []string{"benka-me/eeee"}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if err := BeeAddDependencies(tt.args.bee, tt.args.namespaces); (err != nil) != tt.wantErr {
+			if err := manager.BeeAddDependencies(tt.args.bee, tt.args.namespaces); (err != nil) != tt.wantErr {
 				t.Errorf("BeeAddDependencies() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})

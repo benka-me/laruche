@@ -16,3 +16,11 @@ func (hive Hive) GetDependencies() Namespaces {
 	}
 	return namespaces
 }
+
+func (bee *Bee) PushDependency(namespace Namespace) *Bee {
+	if bee.Deps == nil {
+		bee.Deps = make([]string, 0)
+	}
+	bee.Deps = append(bee.Deps, string(namespace))
+	return bee
+}

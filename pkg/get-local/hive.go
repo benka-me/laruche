@@ -9,7 +9,7 @@ import (
 	"os"
 )
 
-func GetHive(namespace string) (*laruche.Hive, error) {
+func GetHive(namespace laruche.Namespace) (*laruche.Hive, error) {
 	hive := laruche.Hive{}
 	dat, err := ioutil.ReadFile(fmt.Sprintf("%s/%s/hive.yaml", config.LaruchePath, namespace))
 	if err != nil {

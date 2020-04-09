@@ -2,8 +2,8 @@ package cli
 
 import (
 	"errors"
+	"github.com/benka-me/laruche/pkg/get-local"
 	"github.com/benka-me/laruche/pkg/laruche"
-	"github.com/benka-me/laruche/pkg/local"
 )
 
 type OneOf interface {

@@ -9,9 +9,9 @@ import (
 	"io/ioutil"
 )
 
-func GetBee(namespace string) (*laruche.Bee, error) {
+func GetBee(namespace laruche.Namespace) (*laruche.Bee, error) {
 	bee := laruche.Bee{}
-	beeConf, err := config.GetBee(laruche.Namespace(namespace))
+	beeConf, err := config.GetBee(namespace)
 	if err != nil {
 		return &laruche.Bee{}, errors.New("bee doesn't exist on this machine")
 	}

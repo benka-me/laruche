@@ -1,18 +1,26 @@
 package manager
 
 import (
+	"fmt"
+	absolute "github.com/benka-me/laruche/pkg/get-absolute"
 	"github.com/benka-me/laruche/pkg/laruche"
-	"github.com/benka-me/laruche/pkg/local"
 )
 
 func BeeAddDependencies(bee *laruche.Bee, namespaces laruche.Namespaces) error {
-	ctx := Context{}
-	namespaces.Map(func(i int, nspace laruche.Namespace) {
-		toAdd, err := local.GetBee(string(nspace))
+	all := laruche.Append(namespaces, bee.GetSubDependencies()...)
+	ctx := newContext(bee)
+	fmt.Println(namespaces, bee.Deps)
+	return all.Map(func(i int, nspace laruche.Namespace) error {
+		toAdd, err := absolute.GetBee(nspace)
 		if err != nil {
-			return
+			return err
 		}
-		ctx.Dive(bee, toAdd)
+
+		err = ctx.install(bee, toAdd)
+		if err != nil {
+			return err
+		}
+
+		return nil
 	})
-	return nil
 }

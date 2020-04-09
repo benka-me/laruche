@@ -92,7 +92,7 @@ func (code Code) GenerateClientsGo() error {
 	//if err != nil {
 	//	fmt.Println("!-- to generate clients please connect to hiveof.services with login cmd --!")
 	//}
-	deps := []laruche.Bee{}
+	deps := []laruche.Bee{} //TODO: temporarily
 
 	for _, dep := range deps {
 		co := Code{
