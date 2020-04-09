@@ -8,6 +8,7 @@ import (
 
 type Namespace string
 type Namespaces []Namespace
+type Mapped map[Namespace]*bool
 type Deps []string
 
 func implode(author, name string) Namespace {

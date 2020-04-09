@@ -2,6 +2,7 @@ package cli
 
 import (
 	"github.com/benka-me/laruche/pkg/laruche"
+	"github.com/benka-me/laruche/pkg/manager"
 	"github.com/urfave/cli"
 	"os"
 )
@@ -24,4 +25,22 @@ func add(app *App) cli.ActionFunc {
 
 		return beeOrHive.AddDep(depMode, namespaces)
 	}
+}
+
+func (bee Bee) AddDep(depMode bool, namespaces laruche.Namespaces) error {
+	if depMode {
+		namespaces = laruche.Bee(bee).GetSubDependencies()
+	}
+
+	var lb = laruche.Bee(bee)
+	return manager.BeeAddDependencies(&lb, namespaces)
+}
+
+func (hive Hive) AddDep(depMode bool, namespaces laruche.Namespaces) error {
+	if depMode {
+		namespaces = laruche.Hive(hive).GetDependencies()
+	}
+
+	var lh = laruche.Hive(hive)
+	return manager.HiveAddDependencies(&lh, namespaces)
 }
