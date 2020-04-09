@@ -9,10 +9,9 @@ func (bee Bee) GetSubDependencies() Namespaces {
 }
 
 func (hive Hive) GetDependencies() Namespaces {
-	namespaces := make(Namespaces, len(hive.Deps))
-	i := 0
+	namespaces := make(Namespaces, 0)
 	for url := range hive.Deps {
-		namespaces[i] = Namespace(url)
+		namespaces = append(namespaces, Namespace(url))
 	}
 	return namespaces
 }

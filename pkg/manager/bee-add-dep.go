@@ -4,10 +4,12 @@ import (
 	"errors"
 	"fmt"
 	absolute "github.com/benka-me/laruche/pkg/get-absolute"
+	local "github.com/benka-me/laruche/pkg/get-local"
 	"github.com/benka-me/laruche/pkg/laruche"
 )
 
-func (ctx Context) beeAddRecursion(bee *laruche.Bee) error {
+func (ctx Context) recursion(bee *laruche.Bee) error {
+	fmt.Println("dive on " + bee.GetNamespace())
 	// check c.Traversed contains child namespace
 	if ctx.Traversed.Contains(bee.GetNamespace()) {
 		return errors.New(fmt.Sprintf("cycle detected: %v\n%s", ctx.Traversed, bee.GetNamespace()))
@@ -24,6 +26,10 @@ func (ctx Context) beeAddRecursion(bee *laruche.Bee) error {
 
 	// concat c.Consumers to child.Consumers
 	bee.PushConsumers(ctx.Consumers)
+	err = local.SaveBee(bee)
+	if err != nil {
+		return err
+	}
 
 	// map dependencies and run same recursion
 	return bee.MapDependencies(func(i int, nspace laruche.Namespace) error {
@@ -32,7 +38,7 @@ func (ctx Context) beeAddRecursion(bee *laruche.Bee) error {
 			return err
 		}
 
-		err = ctx.beeAddRecursion(dep)
+		err = ctx.recursion(dep)
 		if err != nil {
 			return err
 		}
@@ -44,8 +50,15 @@ func BeeAddDependencies(bee *laruche.Bee, namespaces laruche.Namespaces) error {
 	if bee == nil {
 		return errors.New("bee == nil")
 	}
-	bee.PushDependencies(namespaces)
 	ctx := newContext(bee)
+	// TODO: protect from self-dependency
+	// TODO: protect from invalid namespace
 
-	return ctx.beeAddRecursion(bee)
+	bee.PushDependencies(namespaces)
+	err := local.SaveBee(bee)
+	if err != nil {
+		return err
+	}
+
+	return ctx.recursion(bee)
 }
