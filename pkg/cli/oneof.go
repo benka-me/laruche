@@ -1,7 +1,9 @@
-package oneof
+package cli
 
 import (
+	"errors"
 	"github.com/benka-me/laruche/pkg/laruche"
+	"github.com/benka-me/laruche/pkg/local"
 	"github.com/benka-me/laruche/pkg/manager"
 )
 
@@ -28,4 +30,20 @@ func (hive Hive) AddDep(depMode bool, namespaces laruche.Namespaces) error {
 
 	var lh = laruche.Hive(hive)
 	return manager.HiveAddDependencies(&lh, namespaces)
+}
+
+func GetOneOfInCurrentDir() (OneOf, error) {
+	hive, errHive := local.GetHiveCurrentDir()
+	bee, errBee := local.GetBeeCurrentDir()
+
+	if errHive != nil && errBee != nil {
+		return nil, errors.New("neither bee.yaml or hive.yaml found on this folders")
+	} else if errHive == nil && errBee == nil {
+		return nil, errors.New("both bee.yaml or hive.yaml found on this folders")
+	} else if errHive == nil {
+		return Hive(*hive), nil
+	} else if errBee == nil {
+		return Bee(*bee), nil
+	}
+	return nil, nil
 }

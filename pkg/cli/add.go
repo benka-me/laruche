@@ -2,7 +2,6 @@ package cli
 
 import (
 	"github.com/benka-me/laruche/pkg/laruche"
-	"github.com/benka-me/laruche/pkg/oneof"
 	"github.com/urfave/cli"
 	"os"
 )
@@ -18,7 +17,7 @@ func add(app *App) cli.ActionFunc {
 			return err
 		}
 
-		beeOrHive, err := oneof.GetOneOfCurrentDir()
+		beeOrHive, err := GetOneOfInCurrentDir()
 		if err != nil {
 			return err
 		}
