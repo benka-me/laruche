@@ -1,21 +1,29 @@
 package manager
 
 import (
-	"fmt"
+	"errors"
 	absolute "github.com/benka-me/laruche/pkg/get-absolute"
 	"github.com/benka-me/laruche/pkg/laruche"
 )
 
 func HiveAddDependencies(hive *laruche.Hive, namespaces laruche.Namespaces) error {
-	ctx := newContext(nil)
+	if hive == nil {
+		return errors.New("hive == nil")
+	}
 
-	return namespaces.Map(func(i int, nspace laruche.Namespace) error {
+	all := laruche.Append(namespaces, hive.GetDependencies()...)
+	ctx := newContext(hive)
+	return all.Map(func(i int, nspace laruche.Namespace) error {
 		toAdd, err := absolute.GetBee(nspace)
 		if err != nil {
 			return err
 		}
 
-		fmt.Println(ctx, toAdd)
+		err = ctx.AddDependencyToConsumer(toAdd)
+		if err != nil {
+			return err
+		}
+
 		return nil
 	})
 }
