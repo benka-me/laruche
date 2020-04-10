@@ -11,7 +11,11 @@ func (js Javascript) ClientsFile(bee *laruche.Bee) error {
 	return nil
 }
 
-func (js Javascript) ServerFiles(bee *laruche.Bee) error {
+func (js Javascript) MainClient(bee *laruche.Bee) error {
+	return nil
+}
+
+func (js Javascript) MainServer(bee *laruche.Bee) error {
 	return nil
 }
 

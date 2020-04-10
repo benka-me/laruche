@@ -18,7 +18,7 @@ type GoClients struct {
 	Return string
 }
 
-func (g Go) ServerFiles(bee *laruche.Bee) error {
+func (g Go) MainServer(bee *laruche.Bee) error {
 	repo := bee.Repo
 	repoPath := fmt.Sprintf("%s/%s", sourcePath, repo)
 
@@ -54,6 +54,27 @@ func (g Go) ServerFiles(bee *laruche.Bee) error {
 		Name:      "hello",
 	}
 	err = hello.generate()
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g Go) MainClient(bee *laruche.Bee) error {
+	repo := bee.Repo
+	repoPath := fmt.Sprintf("%s/%s", sourcePath, repo)
+	err := mkdirAll(fmt.Sprintf("%s/go-pkg/http/rpc", repoPath))
+	if err != nil {
+		return err
+	}
+	//generate main.go
+	main := Code{
+		Interface: bee,
+		Template:  fmt.Sprintf("%s/main-client-go", GoTemplates),
+		Target:    fmt.Sprintf("%s/%s/main.go", sourcePath, repo),
+		Name:      "main",
+	}
+	err = main.generate()
 	if err != nil {
 		return err
 	}

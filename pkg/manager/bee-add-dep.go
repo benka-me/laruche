@@ -17,7 +17,7 @@ func BeeAddDependencies(bee *laruche.Bee, request laruche.Namespaces) error {
 
 	bee.PushDependencies(valid.GetDependencies())
 
-	err := generator.Clients(bee)
+	err := generator.GenerateClients(bee)
 	if err != nil {
 		return err
 	}

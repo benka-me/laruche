@@ -7,7 +7,8 @@ import (
 type LangGenerator interface {
 	Protoc(*laruche.Bee)
 	ClientsFile(*laruche.Bee) error
-	ServerFiles(*laruche.Bee) error
+	MainServer(*laruche.Bee) error
+	MainClient(*laruche.Bee) error
 }
 
 type LangGenerators *[]LangGenerator

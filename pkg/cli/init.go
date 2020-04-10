@@ -12,14 +12,14 @@ import (
 
 func initGateway(app *App) cli.ActionFunc {
 	return func(context *cli.Context) error {
-		bee := form.InitServiceAskUser()
-		return ActionInitService(bee)
+		bee := form.InitGatewayAskUser()
+		return ActionInitGateway(bee)
 	}
 }
 func initClient(app *App) cli.ActionFunc {
 	return func(context *cli.Context) error {
-		bee := form.InitServiceAskUser()
-		return ActionInitService(bee)
+		bee := form.InitClientAskUser()
+		return ActionInitClient(bee)
 	}
 }
 func initService(app *App) cli.ActionFunc {
@@ -50,7 +50,7 @@ func ActionInitService(bee *laruche.Bee) error {
 		return nil
 	}
 
-	err = generator.GenerateAll(bee)
+	err = generator.GenerateMainService(bee)
 	if err != nil {
 		return nil
 	}
@@ -64,7 +64,7 @@ func ActionInitGateway(bee *laruche.Bee) error {
 		return nil
 	}
 
-	err = generator.GenerateAll(bee)
+	err = generator.GenerateMainService(bee)
 	if err != nil {
 		return nil
 	}
@@ -77,7 +77,7 @@ func ActionInitClient(bee *laruche.Bee) error {
 		return nil
 	}
 
-	err = generator.GenerateAll(bee)
+	err = generator.GenerateMainClient(bee)
 	if err != nil {
 		return nil
 	}

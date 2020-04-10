@@ -27,9 +27,9 @@ var Templates = fmt.Sprintf("%s/github.com/benka-me/laruche/pkg/generator/templa
 var GoTemplates = fmt.Sprintf("%s/go", Templates)
 var ProtobufTemplates = fmt.Sprintf("%s/protobuf", Templates)
 
-func GenerateAll(bee *laruche.Bee) error {
+func GenerateMainService(bee *laruche.Bee) error {
 	form.FillDefaultMeta(bee)
-	err := agnosticFiles(bee)
+	err := agnosticServerFiles(bee)
 	if err != nil {
 		return err
 	}
@@ -43,7 +43,7 @@ func GenerateAll(bee *laruche.Bee) error {
 		lang.Protoc(bee)
 	}
 
-	err = GetDevLang(bee).ServerFiles(bee)
+	err = GetDevLang(bee).MainServer(bee)
 	if err != nil {
 		return err
 	}
@@ -55,7 +55,24 @@ func GenerateAll(bee *laruche.Bee) error {
 	return nil
 }
 
-func Clients(bee *laruche.Bee) error {
+func GenerateMainClient(bee *laruche.Bee) error {
+	form.FillDefaultMeta(bee)
+
+	devLang := GetDevLang(bee)
+
+	err := devLang.MainClient(bee)
+	if err != nil {
+		return err
+	}
+
+	err = GetDevLang(bee).ClientsFile(bee)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func GenerateClients(bee *laruche.Bee) error {
 	err := GetDevLang(bee).ClientsFile(bee)
 	return err
 }

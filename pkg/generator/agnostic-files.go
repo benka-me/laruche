@@ -12,7 +12,7 @@ func mkdirAll(s string) error {
 	return os.MkdirAll(s, dirPerm)
 }
 
-func agnosticFiles(bee *laruche.Bee) error {
+func agnosticServerFiles(bee *laruche.Bee) error {
 	repo := bee.Repo
 	pkgName := bee.PkgName
 	repoPath := fmt.Sprintf("%s/%s", sourcePath, repo)

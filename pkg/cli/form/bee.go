@@ -39,15 +39,15 @@ func InitClientAskUser() *laruche.Bee {
 	scan.V = validator.New()
 
 	bee.Name = strings.ToLower(scan.Step(
-		"Name of the new bee micro-service ",
+		"Name of your client",
 		"required,lte=20,gte=3",
 		scan.IsAlphanumDash))
 
-	bee.PkgName = strings.ToLower(scan.Step(
-		"Package name (2 - 7 chars long, shorter is better) for packages and types building",
-		"required,lte=7,gte=2,alpha",
-		func(s string) error { return nil }))
-
+	//bee.PkgName = strings.ToLower(scan.Step(
+	//	"Package name (2 - 7 chars long, shorter is better) for packages and types building",
+	//	"required,lte=7,gte=2,alpha",
+	//	func(s string) error { return nil }))
+	//
 	bee.Repo = strings.Replace(scan.Step(
 		"Git repository",
 		"required,gte=5",
