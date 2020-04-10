@@ -1,38 +1,47 @@
 package manager
 
 import (
+	"errors"
 	"fmt"
+	absolute "github.com/benka-me/laruche/pkg/get-absolute"
 	local "github.com/benka-me/laruche/pkg/get-local"
 	"github.com/benka-me/laruche/pkg/laruche"
 )
 
-func (ctx Context) install(parent *laruche.Bee, child *laruche.Bee) error {
-	var err error
-	fmt.Println(ctx)
-	fmt.Println(parent.Deps)
-	fmt.Println(child.Cons)
+func (ctx Context) dive(bee *laruche.Bee) error {
+	fmt.Println("dive on " + bee.GetNamespace())
 	// check c.Traversed contains child namespace
+	if ctx.Traversed.Contains(bee.GetNamespace()) {
+		return errors.New(fmt.Sprintf("cycle detected: %v\n%s", ctx.Traversed, bee.GetNamespace()))
+	}
+
+	// add current node to traversed
+	ctx.Traversed.PushUnique(bee.GetNamespace())
+
+	// concat child to ctx.Consumers
+	err := ctx.AddDependencyToConsumerAndSave(bee)
+	if err != nil {
+		return err
+	}
 
 	// concat c.Consumers to child.Consumers
-
-	// add child namespace to traversed
-
-	// add child to parents.Deps
-
-	parent.PushDependency(child.GetNamespace())
-
-	err = local.SaveBee(parent)
+	bee.PushConsumers(ctx.Consumers)
+	err = local.SaveBee(bee)
 	if err != nil {
 		return err
 	}
 
-	err = local.SaveBee(child)
-	if err != nil {
-		return err
-	}
+	// dive into dependencies
+	return bee.MapDependencies(func(i int, nspace laruche.Namespace) error {
+		dep, err := absolute.GetBee(nspace)
+		if err != nil {
+			return err
+		}
 
-	fmt.Println(ctx)
-	fmt.Println(parent.Deps)
-	fmt.Println(child.Cons)
-	return nil
+		err = ctx.dive(dep)
+		if err != nil {
+			return err
+		}
+		return nil
+	})
 }

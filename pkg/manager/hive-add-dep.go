@@ -27,7 +27,7 @@ func HiveAddDependencies(hive *laruche.Hive, namespaces laruche.Namespaces) erro
 		}
 
 		fmt.Println("will dive: ", toAdd.GetNamespace(), nspace)
-		err = ctx.recursion(toAdd)
+		err = ctx.dive(toAdd)
 		if err != nil {
 			return err
 		}
