@@ -88,7 +88,7 @@ func (nps Namespaces) Contains(str Namespace) bool {
 	return false
 }
 
-func (nps *Namespaces) Push(new Namespace) {
+func (nps *Namespaces) PushUnique(new Namespace) {
 	for _, a := range *nps {
 		if a == new {
 			return

@@ -19,7 +19,7 @@ func newContext(oneOf laruche.OneOf) Context {
 	return ret
 }
 
-func (ctx *Context) AddDependencyToConsumer(bee *laruche.Bee) error {
+func (ctx *Context) AddDependencyToConsumerAndSave(bee *laruche.Bee) error {
 	return ctx.Consumers.Map(func(i int, nspace laruche.Namespace) error {
 		h, err := local.GetHive(nspace)
 		if err != nil {

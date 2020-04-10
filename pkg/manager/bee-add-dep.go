@@ -16,10 +16,10 @@ func (ctx Context) recursion(bee *laruche.Bee) error {
 	}
 
 	// add current node to traversed
-	ctx.Traversed.Push(bee.GetNamespace())
+	ctx.Traversed.PushUnique(bee.GetNamespace())
 
 	// concat child to ctx.Consumers
-	err := ctx.AddDependencyToConsumer(bee)
+	err := ctx.AddDependencyToConsumerAndSave(bee)
 	if err != nil {
 		return err
 	}
@@ -53,8 +53,22 @@ func BeeAddDependencies(bee *laruche.Bee, namespaces laruche.Namespaces) error {
 	ctx := newContext(bee)
 	// TODO: protect from self-dependency
 	// TODO: protect from invalid namespace
+	// TODO: re-generate client
+	valid := make(laruche.Namespaces, 0)
+	_ = namespaces.Map(func(i int, nspace laruche.Namespace) error {
+		if nspace == bee.GetNamespace() {
+			fmt.Println(nspace + " cannot bee dependency of himself")
+			return nil
+		}
+		try, err := absolute.GetBee(nspace)
+		if err != nil {
+			fmt.Println(err)
+		}
+		valid.PushUnique(try.GetNamespace())
+		return nil
+	})
 
-	bee.PushDependencies(namespaces)
+	bee.PushDependencies(valid)
 	err := local.SaveBee(bee)
 	if err != nil {
 		return err

@@ -21,7 +21,7 @@ func HiveAddDependencies(hive *laruche.Hive, namespaces laruche.Namespaces) erro
 			return err
 		}
 
-		err = ctx.AddDependencyToConsumer(toAdd)
+		err = ctx.AddDependencyToConsumerAndSave(toAdd)
 		if err != nil {
 			return err
 		}
