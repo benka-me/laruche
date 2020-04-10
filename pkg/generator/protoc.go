@@ -3,21 +3,8 @@ package generator
 import (
 	"bytes"
 	"fmt"
-	"github.com/benka-me/laruche/pkg/laruche"
-	"os"
 	"os/exec"
 )
-
-func Protoc(bee laruche.Bee) {
-	lgs, err := GetLangs(bee.Languages)
-	if err != nil {
-		os.Exit(0)
-	}
-
-	for _, lg := range *lgs {
-		lg.Protoc(&bee)
-	}
-}
 
 func runProtocCommand(args []string) {
 	cmd := exec.Command("protoc", args...)

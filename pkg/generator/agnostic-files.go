@@ -38,7 +38,7 @@ func agnosticFiles(bee *laruche.Bee) error {
 		Template:  fmt.Sprintf("%s/defs.proto", ProtobufTemplates),
 		Target:    fmt.Sprintf("%s/protobuf/%s.proto", repoPath, pkgName),
 		Name:      "defs",
-	}.Generate()
+	}.generate()
 	if err != nil {
 		return err
 	}
@@ -49,7 +49,7 @@ func agnosticFiles(bee *laruche.Bee) error {
 		Template:  fmt.Sprintf("%s/rpc.proto", ProtobufTemplates),
 		Target:    fmt.Sprintf("%s/protobuf/rpc-%s.proto", repoPath, pkgName),
 		Name:      "rpc",
-	}.Generate()
+	}.generate()
 	if err != nil {
 		return err
 	}

@@ -18,6 +18,20 @@ func GetBee(namespace laruche.Namespace) (*laruche.Bee, error) {
 	return ret, nil
 }
 
+func GetBeez(namespaces laruche.Namespaces) (*laruche.Beez, error) {
+	ret := make(laruche.Beez, 0)
+
+	err := namespaces.Map(func(i int, namespace laruche.Namespace) error {
+		one, err := GetBee(namespace)
+		if err != nil {
+			return err
+		}
+		ret = append(ret, one)
+		return nil
+	})
+	return &ret, err
+}
+
 func SaveBee(bee *laruche.Bee) error {
 	return nil
 }

@@ -6,7 +6,7 @@ import (
 	"github.com/benka-me/laruche/pkg/laruche"
 )
 
-func namespaceValidate(bee *laruche.Bee, valid *laruche.Namespaces) laruche.NamespaceIter {
+func namespaceValidate(bee *laruche.Bee, valid *laruche.Beez) laruche.NamespaceIter {
 	return func(i int, nspace laruche.Namespace) error {
 		if nspace == bee.GetNamespace() {
 			fmt.Println(nspace + " cannot bee dependency of himself")
@@ -16,7 +16,7 @@ func namespaceValidate(bee *laruche.Bee, valid *laruche.Namespaces) laruche.Name
 		if err != nil {
 			fmt.Println(err)
 		}
-		valid.PushUnique(try.GetNamespace())
+		valid.Push(try)
 		return nil
 	}
 }

@@ -55,14 +55,12 @@ func GenerateAll(bee *laruche.Bee) error {
 	return nil
 }
 
-func GenerateClientsFilesFor(bee *laruche.Bee) error {
-	form.FillDefaultMeta(bee)
-
+func Clients(bee *laruche.Bee) error {
 	err := GetDevLang(bee).ClientsFile(bee)
 	return err
 }
 
-func (code Code) Generate() error {
+func (code Code) generate() error {
 	dat, err := ioutil.ReadFile(code.Template)
 	if err != nil {
 		return err

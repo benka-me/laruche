@@ -36,7 +36,7 @@ func add(app *App) cli.ActionFunc {
 
 func (bee Bee) AddDep(depMode bool, namespaces laruche.Namespaces) error {
 	if depMode {
-		namespaces = laruche.Bee(bee).GetSubDependencies()
+		namespaces = laruche.Bee(bee).GetDependencies()
 	}
 
 	var lb = laruche.Bee(bee)

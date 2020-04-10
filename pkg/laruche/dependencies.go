@@ -1,6 +1,6 @@
 package laruche
 
-func (bee Bee) GetSubDependencies() Namespaces {
+func (bee Bee) GetDependencies() Namespaces {
 	namespaces := make(Namespaces, len(bee.Deps))
 	for i, url := range bee.Deps {
 		namespaces[i] = Namespace(url)
