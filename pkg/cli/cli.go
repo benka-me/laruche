@@ -40,7 +40,12 @@ func Run() {
 		{
 			Name:   "add",
 			Action: add(app),
-			Usage:  "init bee (micro-service)",
+			Usage:  "add dependency to current hive or bee",
+		},
+		{
+			Name:   "protoc",
+			Action: protoc(app),
+			Usage:  "generate protobuf code",
 		},
 	}
 	cliApp.Action = func(context *urfave.Context) error {
