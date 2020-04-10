@@ -1,3 +1,2 @@
 	    {{.PkgNameCamel}}: {{.PkgName}}.New{{.PkgNameCamel}}Client(conn{{.PkgNameCamel}}),
 	    {{.PkgNameCamel}}Gateway: {{.PkgName}}.New{{.PkgNameCamel}}Client(conn{{.PkgNameCamel}}Gateway),
-
