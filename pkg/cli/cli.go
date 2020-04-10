@@ -26,8 +26,18 @@ func Run() {
 			Usage: "init bee or hive",
 			Subcommands: urfave.Commands{
 				{
-					Name:   "bee",
-					Action: initBee(app),
+					Name:   "service",
+					Action: initService(app),
+					Usage:  "init bee (micro-service)",
+				},
+				{
+					Name:   "gateway",
+					Action: initGateway(app),
+					Usage:  "init bee (micro-service)",
+				},
+				{
+					Name:   "client",
+					Action: initClient(app),
 					Usage:  "init bee (micro-service)",
 				},
 				{

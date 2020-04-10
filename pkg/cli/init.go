@@ -10,7 +10,41 @@ import (
 	"github.com/urfave/cli"
 )
 
-func ActionInitBee(bee *laruche.Bee) error {
+func initGateway(app *App) cli.ActionFunc {
+	return func(context *cli.Context) error {
+		bee := form.InitServiceAskUser()
+		return ActionInitService(bee)
+	}
+}
+func initClient(app *App) cli.ActionFunc {
+	return func(context *cli.Context) error {
+		bee := form.InitServiceAskUser()
+		return ActionInitService(bee)
+	}
+}
+func initService(app *App) cli.ActionFunc {
+	return func(context *cli.Context) error {
+		bee := form.InitServiceAskUser()
+		return ActionInitService(bee)
+	}
+}
+func initHive(app *App) cli.ActionFunc {
+	return func(context *cli.Context) error {
+		hive := laruche.InitHiveAskUser()
+		return ActionInitHive(hive)
+	}
+}
+
+func ActionInitHive(hive *laruche.Hive) error {
+	setAuthor(hive)
+	err := local.SaveHive(hive)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func ActionInitService(bee *laruche.Bee) error {
 	err := config.AddBee(bee)
 	if err != nil {
 		return nil
@@ -23,27 +57,32 @@ func ActionInitBee(bee *laruche.Bee) error {
 
 	return local.SaveBee(bee)
 }
-func initBee(app *App) cli.ActionFunc {
-	return func(context *cli.Context) error {
-		bee := form.InitBeeAskUser()
-		return ActionInitBee(bee)
-	}
-}
-func ActionInitHive(hive *laruche.Hive) error {
-	setAuthor(hive)
 
-	err := local.SaveHive(hive)
+func ActionInitGateway(bee *laruche.Bee) error {
+	err := config.AddBee(bee)
 	if err != nil {
-		return err
+		return nil
 	}
-	return nil
-}
 
-func initHive(app *App) cli.ActionFunc {
-	return func(context *cli.Context) error {
-		hive := laruche.InitHiveAskUser()
-		return ActionInitHive(hive)
+	err = generator.GenerateAll(bee)
+	if err != nil {
+		return nil
 	}
+
+	return local.SaveBee(bee)
+}
+func ActionInitClient(bee *laruche.Bee) error {
+	err := config.AddBee(bee)
+	if err != nil {
+		return nil
+	}
+
+	err = generator.GenerateAll(bee)
+	if err != nil {
+		return nil
+	}
+
+	return local.SaveBee(bee)
 }
 func setAuthor(hive *laruche.Hive) {
 	author := config.GetState().Username
