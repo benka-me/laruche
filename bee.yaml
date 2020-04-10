@@ -1,0 +1,28 @@
+name: laruche
+pkgname: ""
+pkgnamecamel: ""
+repo: github.com/benka-me/laruche
+author: benka-me
+port: 0
+public: false
+license: ""
+description: ""
+keywords: ""
+tag: ""
+devlang: 0
+languages:
+  go:
+    setup:
+      active: true
+      protocbinary: gogoslick
+  javascript:
+    setup:
+      active: true
+      protocbinary: ""
+protosetup:
+  files:
+    - .proto
+    - rpc-.proto
+isgateway: false
+deps: []
+cons: []
