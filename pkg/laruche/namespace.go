@@ -40,9 +40,9 @@ func appendOneString(dest []string, src string) []string {
 	return dest
 }
 
-func (namespaces *Namespaces) Append(src ...Namespace) *Namespaces {
-	*namespaces = AppendUnique(*namespaces, src...)
-	return namespaces
+func (nps *Namespaces) Append(src ...Namespace) *Namespaces {
+	*nps = AppendUnique(*nps, src...)
+	return nps
 }
 
 func AppendUniqueString(dest []string, src ...string) []string {
@@ -95,13 +95,6 @@ func (nps *Namespaces) PushUnique(new Namespace) {
 		}
 	}
 	*nps = AppendUnique(*nps, new)
-}
-func BeesToNamespacesFrom(arr []*Bee) Namespaces {
-	namespaces := make(Namespaces, len(arr))
-	for i, bee := range arr {
-		namespaces[i] = bee.GetNamespace()
-	}
-	return namespaces
 }
 
 func ArrayToNamespaces(arr []string) (Namespaces, error) {

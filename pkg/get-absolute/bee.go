@@ -31,7 +31,3 @@ func GetBeez(namespaces laruche.Namespaces) (*laruche.Beez, error) {
 	})
 	return &ret, err
 }
-
-func SaveBee(bee *laruche.Bee) error {
-	return nil
-}

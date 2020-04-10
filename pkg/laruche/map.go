@@ -17,8 +17,8 @@ func (m MBees) Map(fn MBeeFunc) MBees {
 
 type NamespaceIter func(int, Namespace) error
 
-func (namespaces Namespaces) Map(fn NamespaceIter) error {
-	for i, n := range namespaces {
+func (nps Namespaces) Map(fn NamespaceIter) error {
+	for i, n := range nps {
 		err := fn(i, n)
 		if err != nil {
 			return err
