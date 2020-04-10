@@ -7,13 +7,22 @@ import (
 	"github.com/benka-me/laruche/pkg/laruche"
 )
 
-func HiveAddDependencies(hive *laruche.Hive, namespaces laruche.Namespaces) error {
+func HiveAddDependencies(hive *laruche.Hive, request laruche.Namespaces) error {
 	if hive == nil {
 		return errors.New("hive == nil")
 	}
-	// TODO: protect from invalid namespaces
+	valid := make(laruche.Beez, 0)
+	_ = request.Map(func(i int, req laruche.Namespace) error {
+		ok, err := absolute.GetBee(req)
+		if err != nil {
+			fmt.Println(err)
+			return nil
+		}
+		valid.Push(ok)
+		return nil
+	})
 
-	all := laruche.AppendUnique(namespaces, hive.GetDependencies()...)
+	all := laruche.AppendUnique(request, hive.GetDependencies()...)
 	ctx := newContext(hive)
 	return all.Map(func(i int, nspace laruche.Namespace) error {
 		toAdd, err := absolute.GetBee(nspace)
@@ -26,7 +35,6 @@ func HiveAddDependencies(hive *laruche.Hive, namespaces laruche.Namespaces) erro
 			return err
 		}
 
-		fmt.Println("will dive: ", toAdd.GetNamespace(), nspace)
 		err = ctx.dive(toAdd)
 		if err != nil {
 			return err
