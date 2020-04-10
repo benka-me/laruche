@@ -3,13 +3,14 @@ package laruche
 type Beez []*Bee
 type BeezIter func(int, *Bee) error
 
-func (beez *Beez) Map(fn BeezIter) {
+func (beez *Beez) Map(fn BeezIter) error {
 	for i, bee := range *beez {
 		err := fn(i, bee)
 		if err != nil {
-			return
+			return err
 		}
 	}
+	return nil
 }
 
 func (beez *Beez) Contain(needle Namespace) bool {

@@ -1,7 +1,6 @@
 package cli
 
 import (
-	"fmt"
 	"github.com/benka-me/laruche/pkg/laruche"
 	"github.com/benka-me/laruche/pkg/manager"
 	"github.com/urfave/cli"
@@ -26,7 +25,6 @@ func add(app *App) cli.ActionFunc {
 
 		err = beeOrHive.AddDep(depMode, namespaces)
 		if err != nil {
-			fmt.Println(err)
 			return err
 		}
 

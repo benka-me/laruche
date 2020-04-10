@@ -2,7 +2,6 @@ package manager
 
 import (
 	"errors"
-	"fmt"
 	absolute "github.com/benka-me/laruche/pkg/get-absolute"
 	"github.com/benka-me/laruche/pkg/laruche"
 )
@@ -12,24 +11,33 @@ func HiveAddDependencies(hive *laruche.Hive, request laruche.Namespaces) error {
 		return errors.New("hive == nil")
 	}
 	valid := make(laruche.Beez, 0)
-	_ = request.Map(func(i int, req laruche.Namespace) error {
+
+	err := request.Map(func(i int, req laruche.Namespace) error {
 		ok, err := absolute.GetBee(req)
 		if err != nil {
-			fmt.Println(err)
-			return nil
+			return err
 		}
 		valid.Push(ok)
 		return nil
 	})
+	if err != nil {
+		return err
+	}
 
-	all := laruche.AppendUnique(request, hive.GetDependencies()...)
-	ctx := newContext(hive)
-	return all.Map(func(i int, nspace laruche.Namespace) error {
-		toAdd, err := absolute.GetBee(nspace)
+	err = hive.GetDependencies().Map(func(i int, req laruche.Namespace) error {
+		ok, err := absolute.GetBee(req)
 		if err != nil {
-			return err
+			return errors.New("hive.yaml: " + err.Error())
 		}
+		valid.Push(ok)
+		return nil
+	})
+	if err != nil {
+		return err
+	}
 
+	ctx := newContext(hive)
+	return valid.Map(func(i int, toAdd *laruche.Bee) error {
 		err = ctx.AddDependencyToConsumerAndSave(toAdd)
 		if err != nil {
 			return err

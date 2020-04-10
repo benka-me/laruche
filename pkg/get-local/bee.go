@@ -13,7 +13,7 @@ func GetBee(namespace laruche.Namespace) (*laruche.Bee, error) {
 	bee := laruche.Bee{}
 	beeConf, err := config.GetBee(namespace)
 	if err != nil {
-		return &laruche.Bee{}, errors.New("bee doesn't exist on this machine")
+		return &bee, errors.New("bee doesn't exist on this machine")
 	}
 	dat, err := ioutil.ReadFile(fmt.Sprintf("%s/%s/bee.yaml", config.SourcePath, beeConf.Path))
 	if err != nil {
