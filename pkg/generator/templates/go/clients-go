@@ -18,7 +18,7 @@ type Clients struct {
 {{.Vars}}
 }
 
-func    initClients(engine discover.Engine,  options ...grpc.DialOption) Clients {
+func    InitClients(engine discover.Engine,  options ...grpc.DialOption) Clients {
 {{.Init}}
     return Clients{
 {{.Return}}

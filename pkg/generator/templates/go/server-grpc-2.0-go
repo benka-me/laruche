@@ -27,7 +27,7 @@ func Server_2_0(engine discover.Engine) {
 	    log.Fatal(err)
 	}
 	app := &App{
-	    Clients : initClients(engine, grpc.WithInsecure()), // Init clients of dependencies services
+	    Clients : InitClients(engine, grpc.WithInsecure()), // Init clients of dependencies services
 	}
 
 	grpcServer = grpc.NewServer()
