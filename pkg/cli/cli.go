@@ -47,9 +47,43 @@ func Run() {
 			Action: protoc(app),
 			Usage:  "generate protobuf code",
 		},
+		{
+			Name:   "generate",
+			Usage:  "generate files",
+			Action: generate(app),
+		},
+		{
+			Name:   "publish",
+			Action: publish(app),
+			Usage:  "publish on hive-and-bees.com",
+		},
+		{
+			Name:   "privatize",
+			Action: privatize(app),
+			Usage:  "privatish on hive-and-bees.com",
+		},
+		{
+			Name:   "push",
+			Action: push(app),
+			Usage:  "push on hive-bees.com",
+		},
+		{
+			Name:   "register",
+			Action: register(app),
+			Usage:  "register to hive-micro-bee.com",
+		},
+		{
+			Name:   "login",
+			Action: login(app),
+			Usage:  "login",
+		},
+		{
+			Name:   "whoami",
+			Action: whoAmI(app),
+			Usage:  "Don't forget who you are",
+		},
 	}
 	cliApp.Action = func(context *urfave.Context) error {
-		fmt.Println(config.GetBee("benka/test"))
 		return nil
 	}
 
