@@ -43,7 +43,6 @@ func ActionInitHive(hive *laruche.Hive) error {
 	}
 	return nil
 }
-
 func ActionInitService(bee *laruche.Bee) error {
 	err := config.AddBee(bee)
 	if err != nil {
@@ -57,7 +56,6 @@ func ActionInitService(bee *laruche.Bee) error {
 
 	return local.SaveBee(bee)
 }
-
 func ActionInitGateway(bee *laruche.Bee) error {
 	err := config.AddBee(bee)
 	if err != nil {
@@ -84,6 +82,7 @@ func ActionInitClient(bee *laruche.Bee) error {
 
 	return local.SaveBee(bee)
 }
+
 func setAuthor(hive *laruche.Hive) {
 	author := config.GetState().Username
 	if author == "" {

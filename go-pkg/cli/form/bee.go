@@ -14,6 +14,7 @@ func InitGatewayAskUser() *laruche.Bee {
 	bee := &laruche.Bee{}
 	scan2.V = validator.New()
 
+	bee.IsGateway = true
 	bee.Name = strings.ToLower(scan2.Step(
 		"Name of the new bee micro-service ",
 		"required,lte=20,gte=3",

@@ -2,9 +2,9 @@ package generator
 
 import (
 	"fmt"
-	form2 "github.com/benka-me/laruche/go-pkg/cli/form"
-	config2 "github.com/benka-me/laruche/go-pkg/config"
-	laruche2 "github.com/benka-me/laruche/go-pkg/laruche"
+	"github.com/benka-me/laruche/go-pkg/cli/form"
+	"github.com/benka-me/laruche/go-pkg/config"
+	"github.com/benka-me/laruche/go-pkg/laruche"
 	"io/ioutil"
 	"os"
 	"text/template"
@@ -22,13 +22,13 @@ type Code struct {
 	Name      string
 }
 
-var sourcePath = config2.SourcePath
+var sourcePath = config.SourcePath
 var Templates = fmt.Sprintf("%s/github.com/benka-me/laruche/go-pkg/generator/templates", sourcePath)
 var GoTemplates = fmt.Sprintf("%s/go", Templates)
 var ProtobufTemplates = fmt.Sprintf("%s/protobuf", Templates)
 
-func GenerateMainService(bee *laruche2.Bee) error {
-	form2.FillDefaultMeta(bee)
+func GenerateMainService(bee *laruche.Bee) error {
+	form.FillDefaultMeta(bee)
 	err := agnosticServerFiles(bee)
 	if err != nil {
 		return err
@@ -55,8 +55,8 @@ func GenerateMainService(bee *laruche2.Bee) error {
 	return nil
 }
 
-func GenerateMainClient(bee *laruche2.Bee) error {
-	form2.FillDefaultMeta(bee)
+func GenerateMainClient(bee *laruche.Bee) error {
+	form.FillDefaultMeta(bee)
 
 	devLang := GetDevLang(bee)
 
@@ -72,7 +72,7 @@ func GenerateMainClient(bee *laruche2.Bee) error {
 	return nil
 }
 
-func GenerateClients(bee *laruche2.Bee) error {
+func GenerateClients(bee *laruche.Bee) error {
 	err := GetDevLang(bee).ClientsFile(bee)
 	return err
 }
