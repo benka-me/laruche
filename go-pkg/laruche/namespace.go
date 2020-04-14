@@ -11,6 +11,20 @@ type Namespaces []Namespace
 type Mapped map[Namespace]*bool
 type Deps []string
 
+func (namespace Namespace) GetAuthor() string {
+	author, _, err := Explode(string(namespace))
+	if err != nil {
+		return ""
+	}
+	return author
+}
+func (namespace Namespace) GetName() string {
+	_, name, err := Explode(string(namespace))
+	if err != nil {
+		return ""
+	}
+	return name
+}
 func implode(author, name string) Namespace {
 	return Namespace(fmt.Sprintf("%s/%s", author, name))
 }
