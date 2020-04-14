@@ -80,6 +80,9 @@ func StepBool(title string) bool {
 
 	return tmp == "y"
 }
+func NoFunc(s string) error {
+	return nil
+}
 func Step(title, validate string, custom StringValid) string {
 	var tmp string
 

@@ -52,7 +52,8 @@ func ParseEngine(namespace string, dev bool) (*Engine, error) {
 	}
 
 	return &Engine{
-		Dev:  dev,
-		Deps: hive.Deps,
+		Dev:         dev,
+		Deps:        hive.Deps,
+		GatewayPort: 8080,
 	}, nil
 }
