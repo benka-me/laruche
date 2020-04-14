@@ -8,9 +8,9 @@ import (
 
 type OneOf interface {
 	AddDep(bool, laruche.Namespaces) error
-	push() error
-	publish() error
-	privatize() error
+	push(app *App) error
+	publish(app *App) error
+	privatize(app *App) error
 }
 
 type Bee laruche.Bee

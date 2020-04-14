@@ -2,7 +2,7 @@ syntax = "proto3";
 package laruche;
 
 option go_package = "github.com/benka-me/laruche/go-pkg/laruche";
-import "github.com/benka-me/cell-user/protobuf/user.proto";
+import "github.com/benka-me/users/protobuf/users.proto";
 
 enum DevLang {
     go_ = 0;
@@ -43,12 +43,12 @@ message Bees {
 }
 
 message BeeReq {
-    user.Token Token = 1;
+    users.Token Token = 1;
     string BeeName = 2;
 }
 
 message BeesReq {
-    user.Token Token = 1;
+    users.Token Token = 1;
     repeated string BeeNames = 2;
 }
 
@@ -118,12 +118,12 @@ message PHP {
 
 message PushBee {
     Bee Bee = 1;
-    user.Token Token = 2;
+    users.Token Token = 2;
 }
 
 message PushHive {
     Hive Hive = 1;
-    user.Token Token = 2;
+    users.Token Token = 2;
 }
 
 message PushBeeRes {

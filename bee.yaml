@@ -21,8 +21,7 @@ languages:
       protocbinary: ""
 protosetup:
   files:
-    - .proto
-    - rpc-.proto
+    - laruche.proto
 isgateway: false
 deps:
   - benka-me/users
