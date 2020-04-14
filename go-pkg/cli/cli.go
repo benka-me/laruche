@@ -63,6 +63,11 @@ func Run() {
 			Usage:  "add dependency to current hive or bee",
 		},
 		{
+			Name:   "install",
+			Action: install(app),
+			Usage:  "add dependency to current hive or bee",
+		},
+		{
 			Name:   "protoc",
 			Action: protoc(app),
 			Usage:  "generate protobuf code",
