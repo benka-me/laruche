@@ -11,7 +11,22 @@ import (
 )
 
 func login(app *App) cli.ActionFunc {
-	return func(context *cli.Context) error {
+	return func(ctx *cli.Context) error {
+		req := &users.LoginReq{}
+
+		username := scan.Step(
+			"Username",
+			"required,lte=20,gte=3",
+			func(s string) error { return nil })
+
+		req.Identifier = username
+		req.Password = scan.GetPassword("Password")
+
+		_, err := app.Users.Login(context.TODO(), req)
+		if err != nil {
+			return err
+		}
+		fmt.Println("Success")
 		return nil
 	}
 }
