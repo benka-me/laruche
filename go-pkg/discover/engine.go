@@ -33,15 +33,12 @@ func (r *Engine) GrpcConn(namespace string, gateway bool, options ...grpc.DialOp
 	}
 
 	var port string
-	var isGateway string
 	if gateway {
 		port = strconv.FormatInt(int64(r.GatewayPort), 10)
-		isGateway = "(Through gateway)"
 	} else {
 		port = strconv.FormatInt(int64(r.Deps[namespace].Port), 10)
 	}
 	address := fmt.Sprintf("%s:%s", host, port)
-	fmt.Printf("New client to %s service on %s %s\n", namespace, address, isGateway)
 	return grpc.Dial(address, options...)
 }
 
