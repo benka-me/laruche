@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/benka-me/laruche/go-pkg/cli/scan"
-	"github.com/benka-me/laruche/go-pkg/config"
 	"github.com/benka-me/users/go-pkg/users"
 	"github.com/go-playground/validator"
 	"github.com/urfave/cli"
@@ -22,11 +21,12 @@ func login(app *App) cli.ActionFunc {
 		req.Identifier = username
 		req.Password = scan.GetPassword("Password")
 
-		_, err := app.Users.Login(context.TODO(), req)
+		res, err := app.Users.Login(context.TODO(), req)
 		if err != nil {
 			return err
 		}
 		fmt.Println("Success")
+		app.State.SetAuth(res.Data.Username, res.Auth)
 		return nil
 	}
 }
@@ -51,12 +51,14 @@ func register(app *App) cli.ActionFunc {
 func whoAmI(app *App) cli.ActionFunc {
 	return func(ctx *cli.Context) error {
 		res, err := app.UsersGateway.Auth(context.TODO(), &users.Token{
-			Val: config.GetState().Username,
+			Val: app.State.AuthToken,
 		})
 		if err != nil {
 			return err
 		}
-		fmt.Println(res.Val)
+		if res.Val {
+			fmt.Println("You are authenticated as", app.State.Username)
+		}
 		return nil
 	}
 }
