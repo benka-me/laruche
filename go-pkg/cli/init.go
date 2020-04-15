@@ -30,7 +30,7 @@ func initService(app *App) cli.ActionFunc {
 }
 func initHive(app *App) cli.ActionFunc {
 	return func(context *cli.Context) error {
-		hive := laruche.InitHiveAskUser()
+		hive := form.InitHiveAskUser()
 		return ActionInitHive(hive)
 	}
 }

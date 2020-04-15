@@ -1,19 +1,18 @@
-package laruche
+package form
 
 import (
 	"github.com/benka-me/hive/go-pkg/cli/scan"
+	"github.com/benka-me/laruche/go-pkg/laruche"
 	"github.com/go-playground/validator"
 	"strings"
 )
 
-type Hives []*Hive
-
-func (hive *Hive) FillMeta() {
+func FillMeta(hive *laruche.Hive) {
 	hive.PkgNameCamel = strings.Title(scan.KebabToCamelCase(hive.PkgName))
 }
 
-func InitHiveAskUser() *Hive {
-	hive := &Hive{}
+func InitHiveAskUser() *laruche.Hive {
+	hive := &laruche.Hive{}
 	scan.V = validator.New()
 
 	hive.Name = strings.ToLower(scan.Step(
@@ -21,7 +20,7 @@ func InitHiveAskUser() *Hive {
 		"required,lte=20,gte=3",
 		scan.IsAlphanumDash))
 
-	hive.FillMeta()
+	FillMeta(hive)
 
 	return hive
 }

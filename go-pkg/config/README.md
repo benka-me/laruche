@@ -6,4 +6,5 @@ This package helps to :
 * manage auth state
 
 ##Database
-config use sqlit3 with GORM to store persistent state
+config use sqlite3 with GORM to store persistent state. It's store bees directoy path.
+
