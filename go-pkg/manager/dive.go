@@ -9,7 +9,6 @@ import (
 )
 
 func (ctx Context) dive(bee *laruche.Bee) error {
-	fmt.Println("dive on " + bee.GetNamespace())
 	// check c.Traversed contains child namespace
 	if ctx.Traversed.Contains(bee.GetNamespace()) {
 		return errors.New(fmt.Sprintf("cycle detected: %v\n%s", ctx.Traversed, bee.GetNamespace()))
@@ -19,7 +18,7 @@ func (ctx Context) dive(bee *laruche.Bee) error {
 	ctx.Traversed.PushUnique(bee.GetNamespace())
 
 	// concat child to ctx.Consumers
-	err := ctx.AddDependencyToConsumerAndSave(bee)
+	err := ctx.addDependencyToConsumerAndSave(bee)
 	if err != nil {
 		return err
 	}

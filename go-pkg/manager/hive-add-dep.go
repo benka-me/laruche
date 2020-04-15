@@ -38,7 +38,7 @@ func HiveAddDependencies(hive *laruche.Hive, request laruche.Namespaces) error {
 
 	ctx := newContext(hive)
 	return valid.Map(func(i int, toAdd *laruche.Bee) error {
-		err = ctx.AddDependencyToConsumerAndSave(toAdd)
+		err = ctx.addDependencyToConsumerAndSave(toAdd)
 		if err != nil {
 			return err
 		}
