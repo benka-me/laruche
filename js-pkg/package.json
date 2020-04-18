@@ -1,0 +1,13 @@
+{
+  "name": "laruche",
+  "version": "1.0.0",
+  "description": "javascript implementation of laruche",
+  "main": "index.js",
+  "repository": "https://github.com/benka-me/laruche.git",
+  "author": "benka-me",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "ts-protoc-gen": "^0.12.0"
+  }
+}
