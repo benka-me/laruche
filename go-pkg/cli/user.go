@@ -21,7 +21,7 @@ func login(app *App) cli.ActionFunc {
 		req.Identifier = username
 		req.Password = scan.GetPassword("Password")
 
-		res, err := app.Users.Login(context.TODO(), req)
+		res, err := app.UsersGateway.Login(context.TODO(), req)
 		if err != nil {
 			return err
 		}

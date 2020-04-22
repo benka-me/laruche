@@ -16,38 +16,20 @@ var _ = fmt.Sprintf("")
 var _ = strconv.FormatInt(int64(0), 10)
 
 type Clients struct {
-	Users         users.UsersClient
 	UsersGateway  users.UsersClient
-	Larsrv        larsrv.LarsrvClient
 	LarsrvGateway larsrv.LarsrvClient
 }
 
+const server = "15.188.93.217:8080"
+
 func InitClients(engine discover.Engine, options ...grpc.DialOption) Clients {
 
-	connUsers, err := engine.GrpcConn("benka-me/users", false, options...)
+	gateway, err := grpc.Dial(server, grpc.WithInsecure())
 	if err != nil {
 		panic("Cannot dial")
 	}
-
-	connUsersGateway, err := engine.GrpcConn("benka-me/users", true, options...)
-	if err != nil {
-		panic("Cannot dial")
-	}
-
-	connLarsrv, err := engine.GrpcConn("benka-me/laruche-server", false, options...)
-	if err != nil {
-		panic("Cannot dial")
-	}
-
-	connLarsrvGateway, err := engine.GrpcConn("benka-me/laruche-server", true, options...)
-	if err != nil {
-		panic("Cannot dial")
-	}
-
 	return Clients{
-		Users:         users.NewUsersClient(connUsers),
-		UsersGateway:  users.NewUsersClient(connUsersGateway),
-		Larsrv:        larsrv.NewLarsrvClient(connLarsrv),
-		LarsrvGateway: larsrv.NewLarsrvClient(connLarsrvGateway),
+		UsersGateway:  users.NewUsersClient(gateway),
+		LarsrvGateway: larsrv.NewLarsrvClient(gateway),
 	}
 }
