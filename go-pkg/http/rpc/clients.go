@@ -20,7 +20,7 @@ type Clients struct {
 	LarsrvGateway larsrv.LarsrvClient
 }
 
-const server = "15.188.93.217:8080"
+const server = "api.laruche.services:8080"
 
 func InitClients(engine discover.Engine, options ...grpc.DialOption) Clients {
 
