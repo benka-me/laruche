@@ -109,7 +109,7 @@ func Run() {
 	sort.Sort(urfave.FlagsByName(cliApp.Flags))
 	sort.Sort(urfave.CommandsByName(cliApp.Commands))
 
-	err = cliApp.Run(os.Args)
+	err := cliApp.Run(os.Args)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(0)
