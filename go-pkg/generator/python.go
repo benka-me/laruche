@@ -2,20 +2,19 @@ package generator
 
 import (
 	"fmt"
-	"github.com/benka-me/hive/go-pkg/hive"
 	"github.com/benka-me/laruche/go-pkg/laruche"
 )
 
 type Python laruche.Python
 
-func (py Python) ClientsFile(bee *hive.Bee) error {
+func (py Python) ClientsFile(bee *laruche.Bee) error {
 	return nil
 }
-func (py Python) ServerFiles(bee *hive.Bee) error {
+func (py Python) ServerFiles(bee *laruche.Bee) error {
 	return nil
 }
 
-func (py Python) Protoc(bee *hive.Bee) {
+func (py Python) Protoc(bee *laruche.Bee) {
 	for _, f := range bee.ProtoSetup.Files {
 		py.oneProtoc(f)
 	}

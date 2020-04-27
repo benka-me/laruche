@@ -1,7 +1,7 @@
 package form
 
 import (
-	"github.com/benka-me/hive/go-pkg/cli/scan"
+	"github.com/benka-me/laruche/go-pkg/cli/scan"
 	"github.com/benka-me/laruche/go-pkg/laruche"
 	"github.com/go-playground/validator"
 	"strings"

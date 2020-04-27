@@ -4,6 +4,7 @@ import (
 	"errors"
 	"github.com/benka-me/laruche/go-pkg/generator"
 	local "github.com/benka-me/laruche/go-pkg/get-local"
+	"github.com/benka-me/laruche/go-pkg/git"
 	"github.com/benka-me/laruche/go-pkg/laruche"
 )
 
@@ -21,6 +22,8 @@ func BeeAddDependencies(bee *laruche.Bee, request laruche.Namespaces) error {
 	if err != nil {
 		return err
 	}
+
+	_, _ = git.Clone(bee.Repo)
 
 	err = local.SaveBee(bee)
 	if err != nil {
