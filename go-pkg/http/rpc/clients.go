@@ -4,9 +4,8 @@ package rpc
 
 import (
 	"fmt"
-	larsrv "github.com/benka-me/laruche-server/go-pkg/larsrv"
-	"github.com/benka-me/laruche/go-pkg/discover"
-	users "github.com/benka-me/users/go-pkg/users"
+	"github.com/benka-me/laruche-server/go-pkg/larsrv"
+	"github.com/benka-me/users/go-pkg/users"
 	"google.golang.org/grpc"
 	"strconv"
 )
@@ -22,7 +21,7 @@ type Clients struct {
 
 const server = "api.laruche.services:8080"
 
-func InitClients(engine discover.Engine, options ...grpc.DialOption) Clients {
+func InitClients(options ...grpc.DialOption) Clients {
 
 	gateway, err := grpc.Dial(server, grpc.WithInsecure())
 	if err != nil {

@@ -3,7 +3,6 @@ package cli
 import (
 	"fmt"
 	"github.com/benka-me/laruche/go-pkg/config"
-	"github.com/benka-me/laruche/go-pkg/discover"
 	"github.com/benka-me/laruche/go-pkg/http/rpc"
 	urfave "github.com/urfave/cli"
 	"google.golang.org/grpc"
@@ -17,13 +16,8 @@ type App struct {
 }
 
 func Run() {
-	engine, err := discover.ParseEngine("benka-me/laruche-hive", true)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
 	app := &App{
-		Clients: rpc.InitClients(*engine, grpc.WithInsecure()), // Init clients of dependencies services, please change options.
+		Clients: rpc.InitClients(grpc.WithInsecure()), // Init clients of dependencies services, please change options.
 		State:   config.Init(),
 	}
 	cliApp := urfave.NewApp()
