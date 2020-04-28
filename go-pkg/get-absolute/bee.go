@@ -1,16 +1,16 @@
 package absolute
 
 import (
-	local2 "github.com/benka-me/laruche/go-pkg/get-local"
-	remote2 "github.com/benka-me/laruche/go-pkg/get-remote"
+	local "github.com/benka-me/laruche/go-pkg/get-local"
+	remote "github.com/benka-me/laruche/go-pkg/get-remote"
 	"github.com/benka-me/laruche/go-pkg/laruche"
 )
 
 func GetBee(namespace laruche.Namespace) (*laruche.Bee, error) {
-	ret, err := local2.GetBee(namespace)
+	ret, err := local.GetBee(namespace)
 	if err != nil {
 		// get remote bee if he's not installed on local machine
-		ret, err = remote2.GetBee(namespace)
+		ret, err = remote.GetBee(namespace)
 		if err != nil {
 			return ret, err
 		}

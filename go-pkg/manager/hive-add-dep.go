@@ -3,6 +3,7 @@ package manager
 import (
 	"errors"
 	absolute "github.com/benka-me/laruche/go-pkg/get-absolute"
+	"github.com/benka-me/laruche/go-pkg/git"
 	"github.com/benka-me/laruche/go-pkg/laruche"
 )
 
@@ -17,7 +18,9 @@ func HiveAddDependencies(hive *laruche.Hive, request laruche.Namespaces) error {
 		if err != nil {
 			return err
 		}
+
 		valid.Push(ok)
+		git.Clone(ok.Repo)
 		return nil
 	})
 	if err != nil {
@@ -29,6 +32,7 @@ func HiveAddDependencies(hive *laruche.Hive, request laruche.Namespaces) error {
 		if err != nil {
 			return errors.New("hive.yaml: " + err.Error())
 		}
+
 		valid.Push(ok)
 		return nil
 	})

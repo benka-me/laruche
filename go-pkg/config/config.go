@@ -25,8 +25,10 @@ type State struct {
 }
 
 func initDB() {
+	go os.MkdirAll(SourcePath, 0755)
 	if dberr != nil {
-		panic("failed to connect database")
+		_ = os.MkdirAll(localVar, 0755)
+		db, dberr = gorm.Open("sqlite3", databasePath)
 	}
 	// Migrate the schema
 	db.AutoMigrate(&State{})

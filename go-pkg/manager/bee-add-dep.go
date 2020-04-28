@@ -18,12 +18,15 @@ func BeeAddDependencies(bee *laruche.Bee, request laruche.Namespaces) error {
 
 	bee.PushDependencies(valid.GetDependencies())
 
+	_ = valid.Map(func(i int, b *laruche.Bee) error {
+		_, _ = git.Clone(b.Repo)
+		return nil
+	})
+
 	err := generator.GenerateClients(bee)
 	if err != nil {
 		return err
 	}
-
-	_, _ = git.Clone(bee.Repo)
 
 	err = local.SaveBee(bee)
 	if err != nil {
