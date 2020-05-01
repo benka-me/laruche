@@ -20,7 +20,7 @@ func HiveAddDependencies(hive *laruche.Hive, request laruche.Namespaces) error {
 		}
 
 		valid.Push(ok)
-		git.Clone(ok.Repo)
+		_, _ = git.Clone(ok.Repo)
 		return nil
 	})
 	if err != nil {

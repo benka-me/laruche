@@ -3,7 +3,7 @@ package generator
 import (
 	"bytes"
 	"fmt"
-	absolute2 "github.com/benka-me/laruche/go-pkg/get-absolute"
+	"github.com/benka-me/laruche/go-pkg/get-absolute"
 	"github.com/benka-me/laruche/go-pkg/laruche"
 	"io/ioutil"
 	"os"
@@ -112,7 +112,7 @@ func (g Go) ClientsFile(bee *laruche.Bee) error {
 		return err
 	}
 
-	deps, err := absolute2.GetBeez(bee.GetDependencies())
+	deps, err := absolute.GetBeez(bee.GetDependencies())
 	if err != nil {
 		fmt.Println("!-- to generate clients please connect to hiveof.services with login cmd --!")
 	}
