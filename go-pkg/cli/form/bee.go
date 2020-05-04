@@ -100,7 +100,7 @@ func FillDefaultMeta(bee *laruche.Bee) {
 	bee.Languages = &laruche.Languages{
 		Go: &laruche.Go{Setup: &laruche.LanguageSetup{
 			Active:       true,
-			ProtocBinary: "gogoslick",
+			ProtocBinary: "go", //gogoslick
 		}},
 		Javascript: &laruche.Javascript{Setup: &laruche.LanguageSetup{
 			Active: true,
